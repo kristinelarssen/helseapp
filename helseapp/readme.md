@@ -5,3 +5,7 @@ som vekt, høyde,  skritt, treningstid, kcal inntak, protein inntak, karbohydrat
 og fettinntak. I tillegg skal appen beregne BMI. 
 Bilde under viser en mockup av startsiden til appen når den er ferdig:
 ![description](helseapp/mockup_helseapp.jpg)
+
+Brukerhistorier:
+1. Brukeren registrerer vekten sin i appen
+
