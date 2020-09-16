@@ -7,13 +7,13 @@ import java.io.IOException;
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 
-public class DagerSerializer {
+public class DagerSerializer extends JsonSerializer<Dager> {
 
     @Override
     public void serialize(final Dager dager, final JsonGenerator jsonGen,
                           final SerializerProvider provider) throws IOException {
-        jsonGen.writeStartArray(Dager.getLatLongCount());
-        for (final Dag dag : Dager) {
+        jsonGen.writeStartArray(dager.getDagCount());
+        for (final Dag dag : dager) {
             jsonGen.writeObject(dag);
         }
         jsonGen.writeEndArray();

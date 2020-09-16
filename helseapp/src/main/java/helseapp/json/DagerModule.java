@@ -22,7 +22,7 @@ public class DagerModule extends Module {
 
     private final SimpleSerializers serializers = new SimpleSerializers();
 
-    public LatLongsModule() {
+    public DagerModule() {
         serializers.addSerializer(Dag.class, new DagSerializer());
         serializers.addSerializer(Dager.class, new DagerSerializer());
     }
