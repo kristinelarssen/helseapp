@@ -18,6 +18,8 @@
 			<artifactId>javafx-fxml</artifactId>
 			<version>14.0.1</version>
 		</dependency>
+
+		<!--Oppsett-->
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
@@ -27,7 +29,7 @@
 
 	<build>
 		<plugins>
-			<!-- Compiling code -->
+			<!-- Compiling code / oppsett av java -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -35,6 +37,13 @@
 				<configuration>
 					<release>14</release>
 				</configuration>
+			</plugin>
+
+			<!-- For testing -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M5</version>
 			</plugin>
 
 
@@ -47,6 +56,31 @@
 					<mainClass>helseapp.ui.GUI</mainClass>
 				</configuration>
             </plugin>
+
+
+			<!-- Configure jacoco code coverage   / testdekningsgrad -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.5</version>
+				<executions>
+					<execution>
+						<id>jacoco-prepare-agent</id>
+						<phase>process-test-classes</phase>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-report</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 		</plugins>
 	</build>
 </project>
