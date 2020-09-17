@@ -59,18 +59,18 @@
                     </Label>
                     <TextField fx:id="vektField" GridPane.ColumnIndex="1" GridPane.rowIndex="0" promptText="kg"/>
                     <TextField fx:id="hoydeField" GridPane.ColumnIndex="1" GridPane.rowIndex="1" promptText="cm"/>
-                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="antall"/>
-                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="minutter"/>
-                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="gram"/>
-                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
-                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
+                    <TextField fx:id="skrittField" GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="antall"/>
+                    <TextField fx:id="treningField" GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="minutter"/>
+                    <TextField fx:id="proteinField" GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="gram"/>
+                    <TextField fx:id="karboField" GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
+                    <TextField fx:id="fettField" GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
 
                 </GridPane>
             </center>
             <bottom>
                 <HBox>
                     <Button mnemonicParsing="false" text="Se i går"/>
-                    <Button fx:id="registrerButton" mnemonicParsing="false" text="Registrer" onAction="#registrerAction"/>
+                    <Button fx:id="bmiButton" mnemonicParsing="false" text="Finn din BMI" onAction="#bmiAction"/>
                     <Button fx:id="lagreButton" mnemonicParsing="false" text="Lagre informasjon" onAction="#lagreData"/>
                     <Button fx:id="henteButton" mnemonicParsing="false" text="Hent informasjon" onAction="#henteData"/>
                 </HBox>

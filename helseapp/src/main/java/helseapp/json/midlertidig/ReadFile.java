@@ -6,17 +6,11 @@ import java.io.BufferedReader;
 
 public class ReadFile {
 
-    private String path;
-
-    public ReadFile(String filePath){
-        this.path = filePath;
-    }
-
-    public String[] OpenFile() throws IOException{
+    public static String[] OpenFile(String path) throws IOException{
         FileReader fr = new FileReader(path);
         BufferedReader textReader = new BufferedReader(fr);
 
-        int numberOfLines = readLines();
+        int numberOfLines = readLines(path);
         String[] textData = new String[numberOfLines];
 
         int i;
@@ -28,15 +22,14 @@ public class ReadFile {
         return textData;
     }
 
-    int readLines() throws IOException{
+    private static int readLines(String path) throws IOException{
 
         FileReader fileToRead = new FileReader(path);
         BufferedReader bf = new BufferedReader(fileToRead);
 
-        String aLine;
         int numberOfLines = 0;
 
-        while (((aLine = bf.readLine()))!= null){
+        while ((bf.readLine())!= null){
             numberOfLines++;
         }
         bf.close();
