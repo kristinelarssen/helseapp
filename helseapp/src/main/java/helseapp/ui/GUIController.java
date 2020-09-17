@@ -4,7 +4,6 @@ import helseapp.core.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
@@ -30,7 +29,6 @@ public class GUIController implements Initializable {
         hoyde = Double.parseDouble(hoydeField.getText());
         JOptionPane.showMessageDialog(null, "Din BMI er " + Utregning.regnUtBMI(vekt, hoyde));
     }
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
