@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.geometry.Insets?>
+<Pane xmlns:fx="http://javafx.com/fxml/1" fx:controller="helseapp.ui.GUIController">
+    <VBox>
+        <BorderPane style="-fx-background-color: CadetBlue;">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            <top>
+                <VBox alignment="CENTER">
+                    <padding><Insets top="10" bottom="10"/></padding>
+                    <Label prefHeight="20.0" prefWidth="101.0" text="Registrering">
+                        <font>
+                            <Font name="Arial Bold" size="16.0" />
+                        </font>
+                    </Label>
+                </VBox>
+            </top>
+            <center>
+                <GridPane hgap="10" vgap="10">
+                    <padding><Insets top="10" right="10" bottom="10" left="10" /></padding>
+                    <Label text="Vekt" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Høyde" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Skritt" GridPane.ColumnIndex="0" GridPane.rowIndex="2">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="3">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="4">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <TextField fx:id="vektField" GridPane.ColumnIndex="1" GridPane.rowIndex="0" promptText="kg"/>
+                    <TextField fx:id="hoydeField" GridPane.ColumnIndex="1" GridPane.rowIndex="1" promptText="cm"/>
+                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="antall"/>
+                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="minutter"/>
+                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="gram"/>
+                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
+                    <TextField GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
+
+                </GridPane>
+            </center>
+            <bottom>
+                <HBox>
+                    <Button mnemonicParsing="false" text="Se i går"/>
+                    <Button fx:id="registrerButton" mnemonicParsing="false" text="Registrer" onAction="#registrerAction"/>
+                </HBox>
+            </bottom>
+        </BorderPane>
+    </VBox>
+</Pane>

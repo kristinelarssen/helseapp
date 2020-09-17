@@ -64,6 +64,29 @@
 				<version>3.0.0-M5</version>
 			</plugin>
 
+			<!-- Run the chechstyle code quality tool -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.1.1</version>
+				<configuration>
+					<configLocation>google_checks.xml</configLocation>
+					<encoding>UTF_8</encoding>
+                    <consoleOutput>true</consoleOutput>
+					<failsOnError>true</failsOnError>
+					<linkXRef>false</linkXRef>
+				</configuration>
+				<executions>
+					<execution>
+						<id>checkstyle-check</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
 
 			<!-- Running JavaFX code  // for å kjøre JavaFX kode med maven -->
 			<plugin>
@@ -98,8 +121,8 @@
 					</execution>
 				</executions>
 			</plugin>
-
 		</plugins>
+
 		<!-- Konfigurert så FXML-filene ligger i java-mappen -->
 		<resources>
 			<resource>
