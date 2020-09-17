@@ -5,7 +5,6 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import javax.swing.*;
@@ -47,7 +46,6 @@ public class GUIController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        registrerButton.setMaxWidth(Double.MAX_VALUE);
         Platform.runLater(() -> registrerButton.requestFocus());
     }
 }
