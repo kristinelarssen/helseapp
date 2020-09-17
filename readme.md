@@ -13,8 +13,9 @@ appkoden i main-mappen.
 I main-mappen ligger java-mappen, hvor helseapp-mappen ligger inni. I helseapp 
 mappen fordeles koden til de ulike applagene. Der ui-mappen inneholder all kode 
 for brukergrensesnitt(inkl. FXML-kode), json-mappen inneholder kode for lagring 
-av data og, core-mappen innholder alle klasser og logikk knyttet til dataene som 
-applikasjonen skal håndtere. 
+av data(Har lagt til midlertidig mappe inne i json for å skrive data til txt-fil, 
+men denne løsningen er kun midlertidig), og core-mappen innholder alle klasser 
+og logikk knyttet til dataene som applikasjonen skal håndtere. 
 
 I test-mappen ligger java-mappen, hvor helseapp-mappen ligger. Inne i 
 helseapp-mappen ligger ui-mappen, json-mappen og core-mappen, som inneholder
