@@ -1,6 +1,7 @@
 package helseapp.ui;
 
 import helseapp.core.*;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -25,15 +26,28 @@ public class GUIController implements Initializable {
     Button registrerButton;
 
     @FXML
+    Button lagreButton;
+
+    @FXML
+    Button henteButton;
+
+    @FXML
     void registrerAction() {
         vekt = Double.parseDouble(vektField.getText());
         hoyde = Double.parseDouble(hoydeField.getText());
         JOptionPane.showMessageDialog(null, "Din BMI er " + Utregning.regnUtBMI(vekt, hoyde));
     }
 
+    @FXML
+    void lagreData() {}
+
+    @FXML
+    void henteData() {}
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
+        registrerButton.setMaxWidth(Double.MAX_VALUE);
+        Platform.runLater(() -> registrerButton.requestFocus());
     }
 }
