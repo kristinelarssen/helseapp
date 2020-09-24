@@ -5,13 +5,14 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import helseapp.json.midlertidig.*;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 public class GUIController implements Initializable {
     private static double vekt;
@@ -48,6 +49,9 @@ public class GUIController implements Initializable {
     Button henteButton;
 
     @FXML
+    DatePicker datoPicker;
+
+    @FXML
     void bmiAction() {
         vekt = Double.parseDouble(vektField.getText());
         hoyde = Double.parseDouble(hoydeField.getText());
@@ -57,7 +61,8 @@ public class GUIController implements Initializable {
     @FXML
     void lagreData() {
         StringBuilder data = new StringBuilder();
-        data.append(vektField.getText());
+        data.append(datoPicker.getValue());
+        data.append("\n").append(vektField.getText());
         data.append("\n").append(hoydeField.getText());
         data.append("\n").append(skrittField.getText());
         data.append("\n").append(treningField.getText());
@@ -75,19 +80,20 @@ public class GUIController implements Initializable {
 
     @FXML
     void henteData() {
-        String[] data = new String[7];
+        String[] data = new String[8];
         try {
             data = ReadFile.OpenFile("helseapp/src/main/java/helseapp/json/midlertidig/data.txt");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        vektField.setText(data[0]);
-        hoydeField.setText(data[1]);
-        skrittField.setText(data[2]);
-        treningField.setText(data[3]);
-        proteinField.setText(data[4]);
-        karboField.setText(data[5]);
-        fettField.setText(data[6]);
+        datoPicker.setValue(LocalDate.parse(data[0]));
+        vektField.setText(data[1]);
+        hoydeField.setText(data[2]);
+        skrittField.setText(data[3]);
+        treningField.setText(data[4]);
+        proteinField.setText(data[5]);
+        karboField.setText(data[6]);
+        fettField.setText(data[7]);
     }
 
 

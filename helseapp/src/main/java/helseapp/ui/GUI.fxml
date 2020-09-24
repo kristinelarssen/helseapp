@@ -22,48 +22,54 @@
             <center>
                 <GridPane hgap="10" vgap="10">
                     <padding><Insets top="10" right="10" bottom="10" left="10" /></padding>
-                    <Label text="Vekt" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3">
+                    <Label text="Dato" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Høyde" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label text="Vekt" GridPane.columnIndex="0" GridPane.rowIndex="1">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Skritt" GridPane.ColumnIndex="0" GridPane.rowIndex="2">
+                    <Label text="Høyde" GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="3">
+                    <Label text="Skritt" GridPane.ColumnIndex="0" GridPane.rowIndex="3">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="4">
+                    <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="4">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
+                    <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
+                    <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
                         <font>
                             <Font name="Arial" size="16.0" />
                         </font>
                     </Label>
-                    <TextField fx:id="vektField" GridPane.ColumnIndex="1" GridPane.rowIndex="0" promptText="kg"/>
-                    <TextField fx:id="hoydeField" GridPane.ColumnIndex="1" GridPane.rowIndex="1" promptText="cm"/>
-                    <TextField fx:id="skrittField" GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="antall"/>
-                    <TextField fx:id="treningField" GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="minutter"/>
-                    <TextField fx:id="proteinField" GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="gram"/>
-                    <TextField fx:id="karboField" GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
-                    <TextField fx:id="fettField" GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
+                    <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="7">
+                        <font>
+                            <Font name="Arial" size="16.0" />
+                        </font>
+                    </Label>
+                    <DatePicker fx:id="datoPicker" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Angi dato"/>
+                    <TextField fx:id="vektField" GridPane.ColumnIndex="1" GridPane.rowIndex="1" promptText="kg"/>
+                    <TextField fx:id="hoydeField" GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="cm"/>
+                    <TextField fx:id="skrittField" GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="antall"/>
+                    <TextField fx:id="treningField" GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="minutter"/>
+                    <TextField fx:id="proteinField" GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
+                    <TextField fx:id="karboField" GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
+                    <TextField fx:id="fettField" GridPane.ColumnIndex="1" GridPane.rowIndex="7" promptText="gram"/>
 
                 </GridPane>
             </center>
