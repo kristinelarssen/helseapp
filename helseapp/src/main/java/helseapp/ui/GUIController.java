@@ -4,6 +4,8 @@ import helseapp.core.*;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -12,11 +14,13 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class GUIController implements Initializable {
     private static double vekt;
     private static double hoyde;
+    Double[][] vektData = new Double[7][2];
 
     @FXML
     TextField vektField;
@@ -50,6 +54,18 @@ public class GUIController implements Initializable {
 
     @FXML
     DatePicker datoPicker;
+
+    @FXML
+    LineChart<String, Number> weightChart;
+
+    @FXML
+    private void populateWeightGraph() {
+        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
+        for(int i = 0; i < 7; i++) {
+            series.getData().add(new XYChart.Data<>(vektData[i][0] + "", vektData[i][1]));
+        }
+        weightChart.getData().add(series);
+    }
 
     @FXML
     void bmiAction() {
@@ -99,6 +115,14 @@ public class GUIController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> bmiButton.requestFocus());
+        Platform.runLater(() -> {
+            bmiButton.requestFocus();
+            for (int i = 0; i < 7; i++) {
+                vektData[i][0] = Double.parseDouble(((27+i)%31) + "");
+                vektData[i][1] = Double.parseDouble((70+i) + "");
+            }
+            populateWeightGraph();
+        });
+
     }
 }
