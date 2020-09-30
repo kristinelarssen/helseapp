@@ -20,9 +20,9 @@
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.NumberAxis?>
-<Pane prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="helseapp.ui.GUIController">
-    <VBox prefHeight="400" prefWidth="600">
-        <TabPane prefHeight="400" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
+<Pane prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="helseapp.ui.GUIController">
+    <VBox prefHeight="500" prefWidth="600">
+        <TabPane prefHeight="500" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
             <Tab text="Registrer informasjon">
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                     <BorderPane style="-fx-background-color: CadetBlue;">
@@ -67,22 +67,22 @@
                                         <Font name="Arial" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
+                                <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="4">
                                     <font>
                                         <Font name="Arial" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
+                                <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
                                     <font>
                                         <Font name="Arial" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="7">
+                                <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
                                     <font>
                                         <Font name="Arial" size="16.0"/>
                                     </font>
                                 </Label>
-                                <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="8">
+                                <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="7">
                                     <font>
                                         <Font name="Arial" size="16.0"/>
                                     </font>
@@ -96,14 +96,13 @@
                                 <TextField fx:id="skrittField" promptText="antall" GridPane.ColumnIndex="1"
                                            GridPane.rowIndex="3"/>
                                 <TextField fx:id="treningField" promptText="minutter" GridPane.ColumnIndex="1"
-                                           GridPane.rowIndex="5"/>
+                                           GridPane.rowIndex="4"/>
                                 <TextField fx:id="proteinField" promptText="gram" GridPane.ColumnIndex="1"
-                                           GridPane.rowIndex="6"/>
+                                           GridPane.rowIndex="5"/>
                                 <TextField fx:id="karboField" promptText="gram" GridPane.ColumnIndex="1"
-                                           GridPane.rowIndex="7"/>
+                                           GridPane.rowIndex="6"/>
                                 <TextField fx:id="fettField" promptText="gram" GridPane.ColumnIndex="1"
-                                           GridPane.rowIndex="8"/>
-                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                           GridPane.rowIndex="7"/>
                                 <columnConstraints>
                                     <ColumnConstraints/>
                                     <ColumnConstraints/>
@@ -138,7 +137,7 @@
                 </AnchorPane>
             </Tab>
             <Tab text="Se dine data">
-                <VBox prefHeight="400" prefWidth="600.0">
+                <VBox prefHeight="500" prefWidth="600.0">
                     <LineChart fx:id="weightChart">
                         <xAxis>
                             <CategoryAxis label="Dager" side="BOTTOM"/>
