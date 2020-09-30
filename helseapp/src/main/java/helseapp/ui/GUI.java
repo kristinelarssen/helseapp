@@ -8,14 +8,19 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
+    private Scene dataScene;
+
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        final Parent parent = FXMLLoader.load(getClass().getResource("GUI.fxml"));
-        primaryStage.setTitle("Helseapp");
-        primaryStage.setWidth(50*9);
-        primaryStage.setHeight(50*16);
-        primaryStage.setScene(new Scene(parent));
-        primaryStage.show();
+        Stage window = primaryStage;
+        final Parent inputParent = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+        Scene inputScene = new Scene(inputParent);
+        window.setTitle("Helseapp");
+        //window.setWidth(50*9);
+        //window.setHeight(50*16);
+        window.setScene(inputScene);
+        window.show();
+
     }
 
     public static void main(final String[] args) {

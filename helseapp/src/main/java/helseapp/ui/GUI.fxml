@@ -1,80 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<?import javafx.scene.text.Font?>
 <?import javafx.geometry.Insets?>
-<Pane xmlns:fx="http://javafx.com/fxml/1" fx:controller="helseapp.ui.GUIController">
-    <VBox>
-        <BorderPane style="-fx-background-color: CadetBlue;">
-            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
-            <top>
-                <VBox alignment="CENTER">
-                    <padding><Insets top="10" bottom="10"/></padding>
-                    <Label prefHeight="20.0" prefWidth="101.0" text="Registrering">
-                        <font>
-                            <Font name="Arial Bold" size="16.0" />
-                        </font>
-                    </Label>
-                </VBox>
-            </top>
-            <center>
-                <GridPane hgap="10" vgap="10">
-                    <padding><Insets top="10" right="10" bottom="10" left="10" /></padding>
-                    <Label text="Vekt" GridPane.columnIndex="0" GridPane.rowIndex="0" GridPane.columnSpan="3">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Høyde" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Skritt" GridPane.ColumnIndex="0" GridPane.rowIndex="2">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="3">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="4">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
-                        <font>
-                            <Font name="Arial" size="16.0" />
-                        </font>
-                    </Label>
-                    <TextField fx:id="vektField" GridPane.ColumnIndex="1" GridPane.rowIndex="0" promptText="kg"/>
-                    <TextField fx:id="hoydeField" GridPane.ColumnIndex="1" GridPane.rowIndex="1" promptText="cm"/>
-                    <TextField fx:id="skrittField" GridPane.ColumnIndex="1" GridPane.rowIndex="2" promptText="antall"/>
-                    <TextField fx:id="treningField" GridPane.ColumnIndex="1" GridPane.rowIndex="3" promptText="minutter"/>
-                    <TextField fx:id="proteinField" GridPane.ColumnIndex="1" GridPane.rowIndex="4" promptText="gram"/>
-                    <TextField fx:id="karboField" GridPane.ColumnIndex="1" GridPane.rowIndex="5" promptText="gram"/>
-                    <TextField fx:id="fettField" GridPane.ColumnIndex="1" GridPane.rowIndex="6" promptText="gram"/>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-                </GridPane>
-            </center>
-            <bottom>
-                <HBox>
-                    <Button mnemonicParsing="false" text="Se i går"/>
-                    <Button fx:id="bmiButton" mnemonicParsing="false" text="Finn din BMI" onAction="#bmiAction"/>
-                    <Button fx:id="lagreButton" mnemonicParsing="false" text="Lagre informasjon" onAction="#lagreData"/>
-                    <Button fx:id="henteButton" mnemonicParsing="false" text="Hent informasjon" onAction="#henteData"/>
-                </HBox>
-            </bottom>
-        </BorderPane>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<Pane prefHeight="400" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="helseapp.ui.GUIController">
+    <VBox prefHeight="400" prefWidth="600">
+        <TabPane prefHeight="400" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
+            <Tab text="Registrer informasjon">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <BorderPane style="-fx-background-color: CadetBlue;">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10"/>
+                        </padding>
+                        <top>
+                            <VBox alignment="CENTER">
+                                <padding>
+                                    <Insets bottom="10" top="10"/>
+                                </padding>
+                                <Label prefHeight="20.0" prefWidth="101.0" text="Registrering">
+                                    <font>
+                                        <Font name="Arial Bold" size="16.0"/>
+                                    </font>
+                                </Label>
+                            </VBox>
+                        </top>
+                        <center>
+                            <GridPane hgap="10" vgap="10">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10"/>
+                                </padding>
+                                <Label text="Dato" GridPane.columnIndex="0" GridPane.columnSpan="3"
+                                       GridPane.rowIndex="0">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Vekt" GridPane.rowIndex="1">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Høyde" GridPane.rowIndex="2">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Skritt" GridPane.ColumnIndex="0" GridPane.rowIndex="3">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Treningstid" GridPane.ColumnIndex="0" GridPane.rowIndex="5">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Protein" GridPane.ColumnIndex="0" GridPane.rowIndex="6">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Karbohydrat" GridPane.ColumnIndex="0" GridPane.rowIndex="7">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <Label text="Fett" GridPane.ColumnIndex="0" GridPane.rowIndex="8">
+                                    <font>
+                                        <Font name="Arial" size="16.0"/>
+                                    </font>
+                                </Label>
+                                <DatePicker fx:id="datoPicker" promptText="Angi dato" GridPane.columnIndex="1"
+                                            GridPane.rowIndex="0"/>
+                                <TextField fx:id="vektField" promptText="kg" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="1"/>
+                                <TextField fx:id="hoydeField" promptText="cm" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="2"/>
+                                <TextField fx:id="skrittField" promptText="antall" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="3"/>
+                                <TextField fx:id="treningField" promptText="minutter" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="5"/>
+                                <TextField fx:id="proteinField" promptText="gram" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="6"/>
+                                <TextField fx:id="karboField" promptText="gram" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="7"/>
+                                <TextField fx:id="fettField" promptText="gram" GridPane.ColumnIndex="1"
+                                           GridPane.rowIndex="8"/>
+                                <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                                <columnConstraints>
+                                    <ColumnConstraints/>
+                                    <ColumnConstraints/>
+                                    <ColumnConstraints/>
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                    <RowConstraints/>
+                                </rowConstraints>
+
+                            </GridPane>
+                        </center>
+                        <bottom>
+                            <HBox>
+                                <Button mnemonicParsing="false" text="Se i går"/>
+                                <Button fx:id="bmiButton" mnemonicParsing="false" onAction="#bmiAction"
+                                        text="Finn din BMI"/>
+                                <Button fx:id="lagreButton" mnemonicParsing="false" onAction="#lagreData"
+                                        text="Lagre informasjon"/>
+                                <Button fx:id="henteButton" mnemonicParsing="false" onAction="#henteData"
+                                        text="Hent informasjon"/>
+                            </HBox>
+                        </bottom>
+                    </BorderPane>
+                </AnchorPane>
+            </Tab>
+            <Tab text="Se dine data">
+                <VBox prefHeight="400" prefWidth="600.0">
+                    <LineChart fx:id="weightChart">
+                        <xAxis>
+                            <CategoryAxis label="Dager" side="BOTTOM"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Vekt" side="LEFT"/>
+                        </yAxis>
+                    </LineChart>
+
+                </VBox>
+            </Tab>
+        </TabPane>
     </VBox>
 </Pane>
