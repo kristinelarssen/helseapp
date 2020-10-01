@@ -18,5 +18,4 @@ public class DagerSerializer extends JsonSerializer<Dager> {
         }
         jsonGen.writeEndArray();
     }
-
 }

@@ -68,4 +68,5 @@ public class Dager implements Iterable<Dag> {
     public Dag removeDag(final int num) {
         return Dager.remove(num);
     }
+
 }

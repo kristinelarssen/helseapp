@@ -3,32 +3,22 @@
 package helseapp.json;
 
 import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 
-public class DagerModule extends Module {
+public class DagerModule extends SimpleModule {
 
-    @Override
-    public String getModuleName() {
-        return "DagerModule";
+
+    private static final String NAME = "DagModule";
+
+    public DagerModule(){
+        super(NAME, Version.unknownVersion());
+        addSerializer(Dag.class, new DagSerializer());
+        addSerializer(Dager.class, new DagerSerializer());
+        addDeserializer(Dag.class, new DagDeserializer());
+        addDeserializer(Dager.class, new DagerDeserializer());
     }
 
-    @Override
-    public Version version() {
-        return Version.unknownVersion();
-    }
-
-    private final SimpleSerializers serializers = new SimpleSerializers();
-
-    public DagerModule() {
-        serializers.addSerializer(Dag.class, new DagSerializer());
-        serializers.addSerializer(Dager.class, new DagerSerializer());
-    }
-
-    @Override
-    public void setupModule(final SetupContext context) {
-        context.addSerializers(serializers);
-    }
 }
