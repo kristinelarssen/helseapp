@@ -1,4 +1,3 @@
-
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+iml,intellij
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+iml,intellij
 
@@ -159,3 +158,5 @@ modules.xml
 *.ipr
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,intellij
+
+/target
