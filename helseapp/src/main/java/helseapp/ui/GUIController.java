@@ -28,6 +28,7 @@ public class GUIController implements Initializable {
     private static double vekt;
     private static double hoyde;
     Double[][] vektData = new Double[7][2];
+    Double[][] skrittData = new Double[7][2];
 
     @FXML
     TextField vektField;
@@ -63,15 +64,16 @@ public class GUIController implements Initializable {
     DatePicker datoPicker;
 
     @FXML
-    LineChart<String, Number> weightChart;
+    LineChart<String, Number> vektChart, skrittChart;
 
     @FXML
     private void populateWeightGraph() {
-        XYChart.Series<String, Number> series = new XYChart.Series<String, Number>();
-        for(int i = 0; i < 7; i++) {
-            series.getData().add(new XYChart.Data<>(vektData[i][0] + "", vektData[i][1]));
-        }
-        weightChart.getData().add(series);
+        Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
+    }
+
+    @FXML
+    private void populateStepGraph() {
+        Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
     }
 
     private String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
@@ -141,12 +143,15 @@ public class GUIController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
             bmiButton.requestFocus();
+            //Testdata for grafene
             for (int i = 0; i < 7; i++) {
                 vektData[i][0] = Double.parseDouble(((27+i)%31) + "");
                 vektData[i][1] = Double.parseDouble((70+i) + "");
+                skrittData[i][0] = Double.parseDouble(((27+i)%31) + "");
+                skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random()*20000) + "");
             }
             populateWeightGraph();
+            populateStepGraph();
         });
-
     }
 }
