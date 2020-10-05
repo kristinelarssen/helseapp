@@ -55,7 +55,7 @@ public class Testing {
 
         // Lagring:
         /*
-        1. Få på plass lesing av fil (ish done)
+        1. Få på plass lesing fra fil (ish done)
         2. koble opp lagring til GUI
         3. Logikk for å unngå at samme dag lagres flere ganger
         4. Ikke overskrive fil, men oppdatere den(legge til nederst)
