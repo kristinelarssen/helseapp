@@ -9,13 +9,20 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import helseapp.json.midlertidig.*;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.io.Writer;
+import java.nio.file.Paths;
+import java.nio.file.Path;
 import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
+import helseapp.json.DagPersistance;
 
 public class GUIController implements Initializable {
     private static double vekt;
@@ -67,11 +74,28 @@ public class GUIController implements Initializable {
         weightChart.getData().add(series);
     }
 
+    private String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
+
+    private DagPersistance dagPersistance = new DagPersistance();
+
+    private Dager dager = new Dager();
+
     @FXML
-    void bmiAction() {
-        vekt = Double.parseDouble(vektField.getText());
-        hoyde = Double.parseDouble(hoydeField.getText());
+    void registrerAction() {
+        double vekt = Double.parseDouble(vektField.getText());
+        double hoyde = Double.parseDouble(hoydeField.getText());
+        dager.addDag(new Dag(vekt, hoyde));
         JOptionPane.showMessageDialog(null, "Din BMI er " + Utregning.regnUtBMI(vekt, hoyde));
+
+        // Lagring:
+        if(savePath != null){
+            Path path = Paths.get(savePath);
+            try(Writer writer = new FileWriter(path.toFile(), StandardCharsets.UTF_8)){
+                dagPersistance.writeDager(dager, writer);
+            } catch (IOException e){
+                System.err.println("Fikk ikke skrevet til dager.json på hjemme området");
+            }
+        }
     }
 
     @FXML

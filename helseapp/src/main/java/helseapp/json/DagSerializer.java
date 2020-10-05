@@ -16,10 +16,8 @@ public class DagSerializer extends JsonSerializer<Dag>{
     @Override
     public void serialize(final Dag dag, final JsonGenerator jsonGenerator, final SerializerProvider prov) throws IOException{
         jsonGenerator.writeStartObject();
-        jsonGenerator.writeFieldName(VEKT_FELT_NAVN);
-        jsonGenerator.writeNumber(dag.getVekt());
-        jsonGenerator.writeFieldName(HOYDE_FELT_NAVN);
-        jsonGenerator.writeNumber(dag.getHoyde());
+        jsonGenerator.writeNumberField(VEKT_FELT_NAVN, dag.getVekt());
+        jsonGenerator.writeNumberField(HOYDE_FELT_NAVN, dag.getHoyde());
         jsonGenerator.writeEndObject();
     }
 
