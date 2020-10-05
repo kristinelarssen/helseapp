@@ -1,10 +1,22 @@
 [ {
   "Vekt" : 1.0,
-  "Hoyde" : 1.0
+  "Skritt" : 1.0,
+  "Treningstid" : 1.0,
+  "Protein" : 1.0,
+  "Karbohydrater" : 1.0,
+  "Fett" : 1.0
 }, {
   "Vekt" : 2.0,
-  "Hoyde" : 2.0
+  "Skritt" : 2.0,
+  "Treningstid" : 2.0,
+  "Protein" : 2.0,
+  "Karbohydrater" : 2.0,
+  "Fett" : 2.0
 }, {
-  "Vekt" : 5.0,
-  "Hoyde" : 4.0
+  "Vekt" : 3.0,
+  "Skritt" : 3.0,
+  "Treningstid" : 3.0,
+  "Protein" : 3.0,
+  "Karbohydrater" : 3.0,
+  "Fett" : 3.0
 } ]

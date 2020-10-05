@@ -24,17 +24,23 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
     public Dag deserialize(final JsonNode jsonNode) throws JsonProcessingException {
         if (jsonNode instanceof ObjectNode) {
             final ObjectNode objectNode = (ObjectNode) jsonNode;
-            final double vekt =
-                    objectNode.get(DagSerializer.VEKT_FELT_NAVN ).asDouble();
-            final double hoyde =
-                    objectNode.get(DagSerializer.HOYDE_FELT_NAVN ).asDouble();
-            return new Dag(vekt, hoyde);
+            final double vekt = objectNode.get(DagSerializer.VEKT_FELT_NAVN ).asDouble();
+            final double skritt = objectNode.get(DagSerializer.SKRITT_FELT_NAVN ).asDouble();
+            final double treningstid = objectNode.get(DagSerializer.TRENINGSTID_FELT_NAVN ).asDouble();
+            final double protein = objectNode.get(DagSerializer.PROTEIN_FELT_NAVN ).asDouble();
+            final double karbo = objectNode.get(DagSerializer.KARBO_FELT_NAVN ).asDouble();
+            final double fett = objectNode.get(DagSerializer.FETT_FELT_NAVN ).asDouble();
+            return new Dag(vekt, skritt, treningstid, protein, karbo, fett);
         } else if (jsonNode instanceof ArrayNode) {
             final ArrayNode dagArray = (ArrayNode) jsonNode;
             if (dagArray.size() == ARRAY_JSON_NODE_SIZE) {
                 final double vekt = dagArray.get(0).asDouble();
-                final double hoyde = dagArray.get(1).asDouble();
-                return new Dag(vekt, hoyde);
+                final double skritt = dagArray.get(1).asDouble();
+                final double treningstid = dagArray.get(2).asDouble();
+                final double protein = dagArray.get(3).asDouble();
+                final double karbo = dagArray.get(4).asDouble();
+                final double fett = dagArray.get(5).asDouble();
+                return new Dag(vekt, skritt, treningstid, protein, karbo, fett);
             }
         }
         return null;

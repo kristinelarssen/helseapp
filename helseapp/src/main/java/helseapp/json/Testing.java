@@ -21,9 +21,9 @@ public class Testing {
     public static void main(String[] args) {
         String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
         DagPersistance dagPersistance = new DagPersistance();
-        Dag dag1 = new Dag(1, 1);
-        Dag dag2 = new Dag(2, 2);
-        Dag dag3 = new Dag(5, 4);
+        Dag dag1 = new Dag(1, 1, 1, 1, 1, 1);
+        Dag dag2 = new Dag(2, 2, 2, 2, 2, 2);
+        Dag dag3 = new Dag(3, 3, 3, 3, 3, 3);
         Dager dager_tilFil = new Dager(dag1, dag2, dag3);
 
         Reader reader = null;
