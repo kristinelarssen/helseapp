@@ -11,10 +11,11 @@ public class Dager implements Iterable<Dag> {
 
     public Dager() {
     }
-
+    /*
     public Dager(final double... DagerArray) {
         addDager(DagerArray);
     }
+    */
 
     public Dager(final Dag... Dager) {
         addDager(Dager);
@@ -57,6 +58,7 @@ public class Dager implements Iterable<Dag> {
         return addDager(List.of(Dager));
     }
 
+    /*
     public final int addDager(final double... DagerArray) {
         final Collection<Dag> Dager = new ArrayList<>(DagerArray.length / 2);
         for (int i = 0; i < DagerArray.length; i += 2) {
@@ -64,6 +66,7 @@ public class Dager implements Iterable<Dag> {
         }
         return addDager(Dager);
     }
+    */
 
     public Dag removeDag(final int num) {
         return Dager.remove(num);
