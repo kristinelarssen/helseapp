@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Dager implements Iterable<Dag> {
 
-    final List<Dag> Dager = new ArrayList<>();
+    final List<Dag> dager = new ArrayList<>();
 
     public Dager() {
     }
@@ -17,45 +17,45 @@ public class Dager implements Iterable<Dag> {
     }
     */
 
-    public Dager(final Dag... Dager) {
-        addDager(Dager);
+    public Dager(final Dag... dager) {
+        addDager(dager);
     }
 
-    public Dager(final Collection<Dag> Dager) {
-        addDager(Dager);
+    public Dager(final Collection<Dag> dager) {
+        addDager(dager);
     }
 
     @Override
     public Iterator<Dag> iterator() {
-        return Dager.iterator();
+        return dager.iterator();
     }
 
     public int getDagCount() {
-        return Dager.size();
+        return dager.size();
     }
 
     public Dag getDag(final int num) {
-        return Dager.get(num);
+        return dager.get(num);
     }
 
-    public void setDag(final int num, final Dag Dag) {
-        Dager.set(num, Dag);
+    public void setDag(final int num, final Dag dag) {
+        dager.set(num, dag);
     }
 
-    public int addDag(final Dag Dag) {
-        final int pos = Dager.size();
-        Dager.add(Dag);
+    public int addDag(final Dag dag) {
+        final int pos = dager.size();
+        dager.add(dag);
         return pos;
     }
 
-    public final int addDager(final Collection<Dag> Dager) {
-        final int pos = this.Dager.size();
-        this.Dager.addAll(Dager);
+    public final int addDager(final Collection<Dag> dager) {
+        final int pos = this.dager.size();
+        this.dager.addAll(dager);
         return pos;
     }
 
-    public final int addDager(final Dag... Dager) {
-        return addDager(List.of(Dager));
+    public final int addDager(final Dag... dager) {
+        return addDager(List.of(dager));
     }
 
     /*
@@ -69,7 +69,7 @@ public class Dager implements Iterable<Dag> {
     */
 
     public Dag removeDag(final int num) {
-        return Dager.remove(num);
+        return dager.remove(num);
     }
 
 }
