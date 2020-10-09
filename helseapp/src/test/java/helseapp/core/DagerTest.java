@@ -67,7 +67,7 @@ public class DagerTest {
         checkIterator(dager.iterator(), dag1, dag2);
         dager.addDag(dag3);
         checkIterator(dager.iterator(), dag1, dag2, dag3);
-        final int pos = dager.dager.size();
+        final int pos = dager.getDagCount();
         assertEquals(3, pos);
         dager.removeDag(pos-1);
         checkIterator(dager.iterator(), dag1, dag2);
