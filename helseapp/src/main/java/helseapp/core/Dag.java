@@ -1,5 +1,7 @@
 package helseapp.core;
 
+import java.time.LocalDate;
+
 public class Dag{
 
     private double vekt;
@@ -8,14 +10,16 @@ public class Dag{
     private double protein;
     private double karbo;
     private double fett;
+    private LocalDate date;
 
-    public Dag(double vekt, double skritt, double treningstid, double protein, double karbo, double fett) {
+    public Dag(double vekt, double skritt, double treningstid, double protein, double karbo, double fett, LocalDate date) {
         this.vekt = vekt;
         this.skritt = skritt;
         this.treningstid = treningstid;
         this.protein = protein;
         this.karbo = karbo;
         this.fett = fett;
+        this.date = date;
     }
 
     public double getVekt() {
@@ -41,4 +45,6 @@ public class Dag{
     public double getSkritt() {
         return skritt;
     }
+
+    public LocalDate getDate() { return date; }
 }

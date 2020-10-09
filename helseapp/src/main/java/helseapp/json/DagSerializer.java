@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import java.io.IOException;
+import java.time.LocalDate;
 
 import helseapp.core.Dag;
 
@@ -16,6 +17,7 @@ public class DagSerializer extends JsonSerializer<Dag>{
     public static final String PROTEIN_FELT_NAVN = "Protein";
     public static final String KARBO_FELT_NAVN = "Karbohydrater";
     public static final String FETT_FELT_NAVN = "Fett";
+    public static final String DATO_FELT_NAVN = "Dato";
 
     @Override
     public void serialize(final Dag dag, final JsonGenerator jsonGenerator, final SerializerProvider prov) throws IOException{
@@ -26,6 +28,7 @@ public class DagSerializer extends JsonSerializer<Dag>{
         jsonGenerator.writeNumberField(PROTEIN_FELT_NAVN, dag.getProtein());
         jsonGenerator.writeNumberField(KARBO_FELT_NAVN, dag.getKarbo());
         jsonGenerator.writeNumberField(FETT_FELT_NAVN, dag.getFett());
+        jsonGenerator.writeStringField(DATO_FELT_NAVN, dag.getDate().toString());
         jsonGenerator.writeEndObject();
     }
 

@@ -1,6 +1,7 @@
 package helseapp.ui;
 
 import helseapp.core.*;
+import helseapp.json.FileData;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ public class GUIController implements Initializable {
     private Double[][] skrittData = new Double[7][2];
     private String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
+    private FileData fileData = new FileData(dagPersistance);
 
     @FXML
     TextField vektField, skrittField, treningField, proteinField,karboField, fettField;
@@ -37,16 +39,22 @@ public class GUIController implements Initializable {
 
     @FXML
     void lagreData() {
-        Dager dager = new Dager();
+        LocalDate date = LocalDate.now();
         double vekt = Double.parseDouble(vektField.getText());
         int skritt = Integer.parseInt(skrittField.getText());
         double treningstid = Double.parseDouble(skrittField.getText());
         double proteiner = Double.parseDouble(proteinField.getText());
         double karbohydrater = Double.parseDouble(karboField.getText());
         double fett = Double.parseDouble(fettField.getText());
-        dager.addDag(new Dag(vekt, skritt, treningstid, proteiner, karbohydrater, fett));
 
         // Lagring:
+        fileData.saveDag(new Dag(vekt, skritt, treningstid, proteiner, karbohydrater, fett, date), savePath);
+
+        // Om alt fungerer, slett det under:
+        // Dager dager = new Dager();
+        // dager.addDag(new Dag(vekt, skritt, treningstid, proteiner, karbohydrater, fett));
+
+        /*
         if(savePath != null){
             Path path = Paths.get(savePath);
             try(Writer writer = new FileWriter(path.toFile(), StandardCharsets.UTF_8)){
@@ -55,11 +63,15 @@ public class GUIController implements Initializable {
                 System.err.println("Fikk ikke skrevet til dager.json på hjemme området");
             }
         }
+        */
     }
 
     @FXML
     void henteData() {
-        DagPersistance dagPersistence = new DagPersistance();
+        Dager dager = fileData.read(savePath);
+
+        // Om alt fungerer, slett alt som er kommentert ut under.
+        /*
         Reader reader = null;
         Dager dager = null;
         if(savePath != null) {
@@ -74,12 +86,14 @@ public class GUIController implements Initializable {
         } catch (IOException e) {
             System.err.println("Feil_2");
         }
-        vektField.setText(String.valueOf(dager.getDag(0).getVekt()));
-        skrittField.setText(String.valueOf(Math.round(dager.getDag(0).getSkritt())));
-        treningField.setText(String.valueOf(dager.getDag(0).getTreningstid()));
-        proteinField.setText(String.valueOf(dager.getDag(0).getProtein()));
-        karboField.setText(String.valueOf(dager.getDag(0).getKarbo()));
-        fettField.setText(String.valueOf(dager.getDag(0).getFett()));
+        */
+
+        vektField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getVekt()));
+        skrittField.setText(String.valueOf(Math.round(dager.getDag(dager.getDagCount()-1).getSkritt())));
+        treningField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getTreningstid()));
+        proteinField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getProtein()));
+        karboField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getKarbo()));
+        fettField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getFett()));
     }
 
     @Override

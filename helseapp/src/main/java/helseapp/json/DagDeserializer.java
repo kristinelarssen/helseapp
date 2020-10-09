@@ -8,6 +8,8 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import java.io.IOException;
+import java.time.LocalDate;
+
 import helseapp.core.Dag;
 
 public class DagDeserializer extends JsonDeserializer<Dag> {
@@ -30,7 +32,10 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
             final double protein = objectNode.get(DagSerializer.PROTEIN_FELT_NAVN ).asDouble();
             final double karbo = objectNode.get(DagSerializer.KARBO_FELT_NAVN ).asDouble();
             final double fett = objectNode.get(DagSerializer.FETT_FELT_NAVN ).asDouble();
-            return new Dag(vekt, skritt, treningstid, protein, karbo, fett);
+            // dato blir feil!!
+            final String date_string = objectNode.get(DagSerializer.DATO_FELT_NAVN).asText();
+            final LocalDate date = LocalDate.parse(date_string);
+            return new Dag(vekt, skritt, treningstid, protein, karbo, fett, date);
         } else if (jsonNode instanceof ArrayNode) {
             final ArrayNode dagArray = (ArrayNode) jsonNode;
             if (dagArray.size() == ARRAY_JSON_NODE_SIZE) {
@@ -40,7 +45,9 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
                 final double protein = dagArray.get(3).asDouble();
                 final double karbo = dagArray.get(4).asDouble();
                 final double fett = dagArray.get(5).asDouble();
-                return new Dag(vekt, skritt, treningstid, protein, karbo, fett);
+                final String date_string = dagArray.get(6).asText();
+                final LocalDate date = LocalDate.parse(date_string);
+                return new Dag(vekt, skritt, treningstid, protein, karbo, fett, date);
             }
         }
         return null;
