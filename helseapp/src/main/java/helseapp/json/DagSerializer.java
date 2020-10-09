@@ -10,7 +10,7 @@ import helseapp.core.Dag;
 
 public class DagSerializer extends JsonSerializer<Dag>{
 
-
+    // Field names in the json-file
     public static final String VEKT_FELT_NAVN = "Vekt";
     public static final String SKRITT_FELT_NAVN = "Skritt";
     public static final String TRENINGSTID_FELT_NAVN = "Treningstid";
@@ -19,6 +19,13 @@ public class DagSerializer extends JsonSerializer<Dag>{
     public static final String FETT_FELT_NAVN = "Fett";
     public static final String DATO_FELT_NAVN = "Dato";
 
+    /**
+     * Serialize a single dag object to json
+     * @param dag - Dag object
+     * @param jsonGenerator - JsonGenerator
+     * @param prov - SerializerProvider
+     * @throws IOException
+     */
     @Override
     public void serialize(final Dag dag, final JsonGenerator jsonGenerator, final SerializerProvider prov) throws IOException{
         jsonGenerator.writeStartObject();
