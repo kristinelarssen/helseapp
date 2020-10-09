@@ -162,3 +162,7 @@ modules.xml
 /target
 /.idea
 
+/.settings
+/bin
+/.prosject
+/.classpath
