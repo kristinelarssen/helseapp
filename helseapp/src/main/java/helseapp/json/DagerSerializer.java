@@ -9,6 +9,13 @@ import helseapp.core.Dager;
 
 public class DagerSerializer extends JsonSerializer<Dager> {
 
+    /**
+     * Serialize Dager object to Json
+     * @param dager - dager object
+     * @param jsonGen - JsonGenerator
+     * @param provider - SerializerProvider
+     * @throws IOException
+     */
     @Override
     public void serialize(final Dager dager, final JsonGenerator jsonGen,
                           final SerializerProvider provider) throws IOException {

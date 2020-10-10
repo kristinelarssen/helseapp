@@ -17,6 +17,14 @@ public class DagerDeserializer extends JsonDeserializer<Dager>{
 
     private final DagDeserializer dagDeserializer = new DagDeserializer();
 
+    /**
+     * Deserilize dager object from json
+     * @param jsonParser - JsonParser object
+     * @param deserializationContext - DeserializationContext object
+     * @throws IOException
+     * @throws JsonProcessingException
+     * @return Dager object
+     */
     @Override
     public Dager deserialize(JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException,
             JsonProcessingException {

@@ -17,6 +17,11 @@ public class FileData {
         this.dagPersistance = dagPercistance;
     }
 
+    /**
+     * Save Dager objects to a json-file
+     * @param savePath - String path to json-file
+     * @param dager - Dager oject
+     */
     public void save(String savePath, Dager dager){
         if(savePath != null){
             Path path = Paths.get(savePath);
@@ -28,6 +33,11 @@ public class FileData {
         }
     }
 
+    /**
+     * Read json-file and create Dager objects
+     * @param loadPath - String path to json-file
+     * @return dager - Dager object
+     */
     public Dager read(String loadPath){
         DagPersistance dagPersistence = dagPersistance;
         Reader reader = null;
@@ -47,7 +57,12 @@ public class FileData {
         return dager;
     }
 
-    // Metode for å håndtere at en dag ikke lagres flere ganger
+    /**
+     * Handles saving of a single Dag object, makes sure that the same day is not saved twice, and that the last
+     * registration is the one that is saved
+     * @param filePath - String path to json-file
+     * @param dag - Dag object
+     */
     public void saveDag(Dag dag, String filePath){
         Dager dager = read(filePath);
         Dag siste_dag = dager.getDag(dager.getDagCount()-1);
