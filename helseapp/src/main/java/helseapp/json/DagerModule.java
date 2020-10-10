@@ -10,9 +10,12 @@ import helseapp.core.Dager;
 
 public class DagerModule extends SimpleModule {
 
-
+    // Module name
     private static final String NAME = "DagModule";
 
+    /**
+     * Initializes this dagerModule with appropriate serializers and deserializers.
+     */
     public DagerModule(){
         super(NAME, Version.unknownVersion());
         addSerializer(Dag.class, new DagSerializer());

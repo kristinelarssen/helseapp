@@ -17,10 +17,22 @@ public class DagPersistance {
         mapper.registerModule(new DagerModule());
     }
 
+    /**
+     * read Dager object from json using ObjectMapper
+     * @param reader - Reader object
+     * @return dager - Dager object
+     */
     public Dager readDager(Reader reader) throws IOException {
-        return mapper.readValue(reader, Dager.class);
+        Dager dager = mapper.readValue(reader, Dager.class);
+        return dager;
     }
 
+    /**
+     * Write Dager object to json using ObjectMapper, such that the data is layed out vertically
+     * @param dager - Dager object
+     * @param writer - Writer object
+     * @throws IOException
+     */
     public void writeDager(Dager dager, Writer writer) throws IOException{
         mapper.writerWithDefaultPrettyPrinter().writeValue(writer, dager);
     }
