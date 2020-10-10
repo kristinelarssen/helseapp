@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Iterator;
+import java.time.LocalDate;
 
 
 public class DagerTest {
@@ -23,7 +24,8 @@ public class DagerTest {
     */
     @Test
     public void testAddDag() {
-        final Dag dag = new Dag(1, 2, 3, 4, 5, 6);
+        LocalDate now = LocalDate.now();
+        final Dag dag = new Dag(1, 2, 3, 4, 5, 6, now);
         dager.addDag(dag);
         assertTrue(dager.iterator().hasNext());
         final Dag addedDag = dager.iterator().next();
@@ -33,6 +35,7 @@ public class DagerTest {
         assertEquals(dag.getSkritt(), addedDag.getSkritt());
         assertEquals(dag.getProtein(), addedDag.getProtein());
         assertEquals(dag.getTreningstid(), addedDag.getTreningstid());
+        assertEquals(dag.getDate(), addedDag.getDate());
     }
 
     /* Hjelpemetode til  */
@@ -54,16 +57,17 @@ public class DagerTest {
     @Test
     public void testIterator_addingAndRemovingDag() {
         checkIterator(dager.iterator());
-        final Dag dag1 = new Dag(1, 2, 3, 4, 5, 6);
-        final Dag dag2 = new Dag(10, 20, 30, 40, 50, 60);
-        final Dag dag3 = new Dag(6, 5, 4, 3, 2, 1);
+        LocalDate now = LocalDate.now();
+        final Dag dag1 = new Dag(1, 2, 3, 4, 5, 6, now);
+        final Dag dag2 = new Dag(10, 20, 30, 40, 50, 60, now.minusDays(1));
+        final Dag dag3 = new Dag(6, 5, 4, 3, 2, 1, now.minusDays(2));
         dager.addDag(dag1);
         checkIterator(dager.iterator(), dag1);
         dager.addDag(dag2);
         checkIterator(dager.iterator(), dag1, dag2);
         dager.addDag(dag3);
         checkIterator(dager.iterator(), dag1, dag2, dag3);
-        final int pos = dager.dager.size();
+        final int pos = dager.getDagCount();
         assertEquals(3, pos);
         dager.removeDag(pos-1);
         checkIterator(dager.iterator(), dag1, dag2);
