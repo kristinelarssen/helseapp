@@ -16,3 +16,6 @@ deserialisering.
 FileData.java - Inneholder rene filhåndteringsmetoder(lagring/lesing) og logikk knyttet til lagring.
 
 dager.json - Filen som benyttes til lagring
+
+UML-diagram for objektene i json-mappen:
+![picture](JSON_UML.png)
