@@ -13,6 +13,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import helseapp.json.DagPersistance;
+import org.jetbrains.annotations.NotNull;
 
 public class GUIController implements Initializable {
     private Double[][] vektData = new Double[7][2];
@@ -35,8 +36,12 @@ public class GUIController implements Initializable {
     @FXML
     LineChart<String, Number> vektChart, skrittChart;
 
-    //Metode for å lagre datafelt på spesifisert dato
-    // Hvis feltet ikke er fylt inn lagres verdien 0
+
+    /**
+     * Lagrer data fra TextField-feltene i appen.
+     * Data lagres basert på dato, med ett datasett per dato.
+     * Hvis feltene ikke er fylt inn lagres verdien 0
+     */
     @FXML
     void lagreData() {
         LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
@@ -59,13 +64,18 @@ public class GUIController implements Initializable {
         fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
     }
 
-    //Kalles når datofeltet endres
+    /**
+     * Setter innhold i alle TextField-feltene når dato endres
+     */
     @FXML
     void dateChangeAction() {
         setDataFields("", "", "", "", "", "");
     }
 
-    //Metode for å hente data lagret på spesifisert dato
+    /**
+     * Henter data lagret på spesifisert dato og legger disse inn i TextField-ene
+     * Hvis ingen data er lagret på datoen forblir TextField-ene uendret
+     */
     @FXML
     void henteData() {
         LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
@@ -81,11 +91,23 @@ public class GUIController implements Initializable {
         }
     }
 
-    //Hjelpemetoder
-    private void setDataFields(Dag dag) {
+    /**
+     * Setter TextFields-feltene i appen med info lagret i Dag-objetket
+     * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
+     */
+    private void setDataFields(@NotNull Dag dag) {
         setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())), Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
     }
 
+    /**
+     * Setter TextFields-feltene i appen med info fra parameterne
+     * @param vekt Legges inn i vekt-feltet
+     * @param skritt Legges inn i skritt-feltet
+     * @param treningstid Legges inn i treningstid-feltet
+     * @param protein Legges inn i protein-feltet
+     * @param karbohydrater Legges inn i karbohydrater-feltet
+     * @param fett Legges inn i fett-feltet
+     */
     private void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
         vektField.setText(vekt);
         skrittField.setText(skritt);
@@ -95,7 +117,14 @@ public class GUIController implements Initializable {
         fettField.setText(fett);
     }
 
-    //Kjøres ved start av appen
+    /**
+     * Initialiserer appen
+     * Legger inn testdata i grafene
+     * Viser grafene i appen
+     * Setter datoen i DatePicker til dagens dato
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -106,7 +135,6 @@ public class GUIController implements Initializable {
                 skrittData[i][0] = Double.parseDouble(((27+i)%31) + "");
                 skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random()*20000) + "");
             }
-            //Viser grafene med data
             Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
             Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
             datoPicker.setValue(LocalDate.now());
