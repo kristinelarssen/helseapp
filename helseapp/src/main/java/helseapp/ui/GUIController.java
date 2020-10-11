@@ -9,10 +9,6 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Paths;
-import java.nio.file.Path;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -25,8 +21,10 @@ public class GUIController implements Initializable {
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
 
+    //Definerer alle FXML-elementene
+
     @FXML
-    TextField vektField, skrittField, treningField, proteinField,karboField, fettField;
+    TextField vektField, skrittField, treningField, proteinField, karboField, fettField;
 
     @FXML
     Button lagreButton, henteButton;
@@ -37,65 +35,67 @@ public class GUIController implements Initializable {
     @FXML
     LineChart<String, Number> vektChart, skrittChart;
 
+    //Metode for å lagre datafelt på spesifisert dato
+    // Hvis feltet ikke er fylt inn lagres verdien 0
     @FXML
     void lagreData() {
-        LocalDate date = LocalDate.now();
-        double vekt = Double.parseDouble(vektField.getText());
-        int skritt = Integer.parseInt(skrittField.getText());
-        double treningstid = Double.parseDouble(skrittField.getText());
-        double proteiner = Double.parseDouble(proteinField.getText());
-        double karbohydrater = Double.parseDouble(karboField.getText());
-        double fett = Double.parseDouble(fettField.getText());
-
-        // Lagring:
-        fileData.saveDag(new Dag(vekt, skritt, treningstid, proteiner, karbohydrater, fett, date), savePath);
-
-        // Om alt fungerer, slett det under:
-        // Dager dager = new Dager();
-        // dager.addDag(new Dag(vekt, skritt, treningstid, proteiner, karbohydrater, fett));
-
-        /*
-        if(savePath != null){
-            Path path = Paths.get(savePath);
-            try(Writer writer = new FileWriter(path.toFile(), StandardCharsets.UTF_8)){
-                dagPersistance.writeDager(dager, writer);
-            } catch (IOException e){
-                System.err.println("Fikk ikke skrevet til dager.json på hjemme området");
+        LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+        Double[] tallData = new Double[6];
+        String[] tekstData = new String[6];
+        tekstData[0] = vektField.getText();
+        tekstData[1] = skrittField.getText();
+        tekstData[2] = treningField.getText();
+        tekstData[3] = proteinField.getText();
+        tekstData[4] = karboField.getText();
+        tekstData[5] = fettField.getText();
+        for(int i = 0; i < 6; i++) {
+            try {
+                tallData[i] = Double.parseDouble(tekstData[i]);
+            } catch (NumberFormatException e) {
+                tallData[i] = 0.0;
             }
         }
-        */
+        // Lagring:
+        fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
     }
 
+    //Kalles når datofeltet endres
+    @FXML
+    void dateChangeAction() {
+        setDataFields("", "", "", "", "", "");
+    }
+
+    //Metode for å hente data lagret på spesifisert dato
     @FXML
     void henteData() {
+        LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
         Dager dager = fileData.read(savePath);
-
-        // Om alt fungerer, slett alt som er kommentert ut under.
-        /*
-        Reader reader = null;
-        Dager dager = null;
-        if(savePath != null) {
-            try {
-                reader = new FileReader(Paths.get(savePath).toFile(), StandardCharsets.UTF_8);
-            } catch (IOException e) {
-                System.err.println("Feil!");
+        Dag dag = null;
+        for(int i = 0; i < dager.getDagCount(); i++) {
+            if(dager.getDag(i).getDate().toString().equals(date.toString())) {
+                dag = dager.getDag(i);
             }
         }
-        try {
-            dager = dagPersistence.readDager(reader);
-        } catch (IOException e) {
-            System.err.println("Feil_2");
+        if (dag != null) {
+            setDataFields(dag);
         }
-        */
-
-        vektField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getVekt()));
-        skrittField.setText(String.valueOf(Math.round(dager.getDag(dager.getDagCount()-1).getSkritt())));
-        treningField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getTreningstid()));
-        proteinField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getProtein()));
-        karboField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getKarbo()));
-        fettField.setText(String.valueOf(dager.getDag(dager.getDagCount()-1).getFett()));
     }
 
+    //Hjelpemetoder
+    private void setDataFields(Dag dag) {
+        setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())), Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
+    }
+
+    private void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
+        vektField.setText(vekt);
+        skrittField.setText(skritt);
+        treningField.setText(treningstid);
+        proteinField.setText(protein);
+        karboField.setText(karbohydrater);
+        fettField.setText(fett);
+    }
+
+    //Kjøres ved start av appen
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> {
@@ -106,8 +106,10 @@ public class GUIController implements Initializable {
                 skrittData[i][0] = Double.parseDouble(((27+i)%31) + "");
                 skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random()*20000) + "");
             }
+            //Viser grafene med data
             Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
             Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
+            datoPicker.setValue(LocalDate.now());
         });
     }
 }

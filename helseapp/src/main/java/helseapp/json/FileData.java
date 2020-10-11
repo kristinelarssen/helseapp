@@ -22,7 +22,7 @@ public class FileData {
      * @param savePath - String path to json-file
      * @param dager - Dager oject
      */
-    public void save(String savePath, Dager dager){
+    void save(String savePath, Dager dager){
         if(savePath != null){
             Path path = Paths.get(savePath);
             try(Writer writer = new FileWriter(path.toFile(), StandardCharsets.UTF_8)){
@@ -65,9 +65,10 @@ public class FileData {
      */
     public void saveDag(Dag dag, String filePath){
         Dager dager = read(filePath);
-        Dag siste_dag = dager.getDag(dager.getDagCount()-1);
-        if(siste_dag.getDate().equals(dag.getDate())){
-            dager.removeDag(dager.getDagCount()-1);
+        for(int i = 0; i < dager.getDagCount(); i++) {
+            if(dager.getDag(i).getDate().toString().equals(dag.getDate().toString())) {
+                dager.removeDag(i);
+            }
         }
         dager.addDag(dag);
         save(filePath, dager);
