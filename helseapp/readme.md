@@ -10,4 +10,13 @@ Brukerhistorier:
 1. Brukeren registrerer vekten sin i appen
 
 UML-diagram for objektene i prosjektet:
-![picture](Helseapp_UML.png)
+![picture](img/Helseapp_UML.png)
+
+UML-diagram for objektene i core-mappen:
+![picture](img/Core_UML.png)
+
+UML-diagram for objektene i ui-mappen:
+![picture](img/UI_UML.png)
+
+UML-diagram for objektene i json-mappen:
+![picture](img/JSON_UML.png)
