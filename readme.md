@@ -4,9 +4,7 @@
 #Helseapp
 Mappestruktur :
 Prosjektet har en nøstet mappestruktur for å få god oversikt over hvor de ulike 
-kodelementene ligger. 
-
-I helseapp-mappen er selve prosjektmappen, hvor
+kodelementene ligger. I helseapp-mappen er selve prosjektmappen, hvor
 kodeprosjektet ligger for en app som skal registrere ulike helsedata, som f.eks. 
 kan være vekt, skritt, calorier og hvilepuls. 
 
@@ -83,6 +81,6 @@ helseapp-mappen
                 
                 core-mappen som inneholder testkode for domenelaget
                 
-testkode for henholdsvis brukergrensesnitt, lagring og domenelaget.
+
 
 
