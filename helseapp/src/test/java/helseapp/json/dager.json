@@ -1,0 +1,9 @@
+[ {
+  "Vekt" : 50.0,
+  "Skritt" : 5000.0,
+  "Treningstid" : 10.0,
+  "Protein" : 200.0,
+  "Karbohydrater" : 300.0,
+  "Fett" : 50.0,
+  "Dato" : "2020-12-01"
+} ]

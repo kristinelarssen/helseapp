@@ -130,6 +130,7 @@
                 <TabPane prefHeight="450" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
                     <Tab text="Vekt">
                         <VBox prefHeight="450" prefWidth="600.0">
+                            <Label text="Dette er statisk data, og skal byttes ut til neste innlevering"/>
                             <LineChart fx:id="vektChart">
                                 <xAxis>
                                     <CategoryAxis label="Dato" side="BOTTOM"/>
@@ -142,6 +143,7 @@
                     </Tab>
                     <Tab text="Skritt">
                         <VBox prefHeight="450" prefWidth="600.0">
+                            <Label text="Dette er tilfeldig generert data, og skal byttes ut til neste innlevering"/>
                             <LineChart fx:id="skrittChart">
                                 <xAxis>
                                     <CategoryAxis label="Dato" side="BOTTOM"/>

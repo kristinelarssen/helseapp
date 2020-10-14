@@ -18,7 +18,7 @@ import org.jetbrains.annotations.NotNull;
 public class GUIController implements Initializable {
     private Double[][] vektData = new Double[7][2];
     private Double[][] skrittData = new Double[7][2];
-    private String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
+    String savePath = "src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
 
@@ -95,7 +95,7 @@ public class GUIController implements Initializable {
      * Setter TextFields-feltene i appen med info lagret i Dag-objetket
      * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
      */
-    private void setDataFields(@NotNull Dag dag) {
+    void setDataFields(@NotNull Dag dag) {
         setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())), Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
     }
 
@@ -108,7 +108,7 @@ public class GUIController implements Initializable {
      * @param karbohydrater Legges inn i karbohydrater-feltet
      * @param fett Legges inn i fett-feltet
      */
-    private void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
+    void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
         vektField.setText(vekt);
         skrittField.setText(skritt);
         treningField.setText(treningstid);
