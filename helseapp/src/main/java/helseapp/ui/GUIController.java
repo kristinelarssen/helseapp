@@ -18,7 +18,7 @@ import helseapp.json.DagPersistance;
 public class GUIController implements Initializable {
     private Double[][] vektData = new Double[7][2];
     private Double[][] skrittData = new Double[7][2];
-    private String savePath = "helseapp/src/main/java/helseapp/json/dager.json";
+    String savePath = "src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
 
@@ -108,7 +108,7 @@ public class GUIController implements Initializable {
      * @param karbohydrater Legges inn i karbohydrater-feltet
      * @param fett Legges inn i fett-feltet
      */
-    private void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
+    void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
         vektField.setText(vekt);
         skrittField.setText(skritt);
         treningField.setText(treningstid);

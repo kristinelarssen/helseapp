@@ -9,12 +9,12 @@ import java.util.Iterator;
 import java.time.LocalDate;
 
 
-public class DagerTest {
+class DagerTest {
 
     private Dager dager;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         dager = new Dager();
     }
 
@@ -23,7 +23,7 @@ public class DagerTest {
     Sjekker om et Dag-objekt blir lagt til i Dager sin dager-liste og om feltene er de samme
     */
     @Test
-    public void testAddDag() {
+    void testAddDag() {
         LocalDate now = LocalDate.now();
         final Dag dag = new Dag(1, 2, 3, 4, 5, 6, now);
         dager.addDag(dag);
@@ -39,7 +39,6 @@ public class DagerTest {
     }
 
     /* Hjelpemetode til  */
-    
     private void checkIterator(final Iterator<Dag> it, final Dag... dager) {
         int i = 0;
         while (it.hasNext()) {
@@ -47,7 +46,7 @@ public class DagerTest {
             assertSame(dager[i], it.next());
             i++;
         }
-        assertTrue(i == dager.length);
+        assertEquals(i, dager.length);
     }
 
     /* 
@@ -55,7 +54,7 @@ public class DagerTest {
     Sjekker om dager blir lagt til og fjernet fra et Dager-objekt sin dager liste 
     */
     @Test
-    public void testIterator_addingAndRemovingDag() {
+    void testIterator_addingAndRemovingDag() {
         checkIterator(dager.iterator());
         LocalDate now = LocalDate.now();
         final Dag dag1 = new Dag(1, 2, 3, 4, 5, 6, now);
@@ -76,5 +75,19 @@ public class DagerTest {
         dager.removeDag(pos-3);
         checkIterator(dager.iterator());
   }
+
+  /*
+    Tester getDag() og setDag()
+    Sjekker om setDag() erstatter et dag-objekt i dager-lista på plass 0
+    */
+    @Test
+    void getSetDagTest() {
+        LocalDate now = LocalDate.now();
+        final Dag dag1 = new Dag(1, 2, 3, 4, 5, 6, now);
+        final Dag dag2 = new Dag(10, 20, 30, 40, 50, 60, now.minusDays(1));
+        dager.addDag(dag2);
+        dager.setDag(0, dag1);
+        assertEquals(dag1, dager.getDag(0));
+    }
 
 }
