@@ -11,12 +11,15 @@ public class Grafmetoder {
 	* @param chart - kobler charten mot fxml chart som skal brukes for den spesifikke charten
 	* @param chartName - navnet på grafen
     */
-    
     public static void leggDataIGraf(Double[][] data, LineChart<String, Number> chart, String chartName) {
+        chart.getData().clear();
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName(chartName);
-        for(int i=0; i < 7; i++) {
-            series.getData().add(new XYChart.Data<>(data[i][0] + "", data[i][1]));
+        StringBuilder sb = new StringBuilder();
+        for(int i=0; i < data.length; i++) {
+            sb.setLength(0);
+            sb.append(Math.round(data[i][1])).append(".").append(Math.round(data[i][2]));
+            series.getData().add(new XYChart.Data<>(sb.toString(), data[i][0]));
         }
         chart.getData().add(series);
     }
