@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DagPersistance.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">helseapp.json</a> &gt; <span class="el_source">DagPersistance.java</span></div><h1>DagPersistance.java</h1><pre class="source lang-java linenums">package helseapp.json;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.Reader;
+import java.io.Writer;
+import helseapp.core.Dager;
+
+public class DagPersistance {
+
+    private ObjectMapper mapper;
+
+<span class="fc" id="L15">    public DagPersistance(){</span>
+<span class="fc" id="L16">        mapper = new ObjectMapper();</span>
+<span class="fc" id="L17">        mapper.registerModule(new DagerModule());</span>
+<span class="fc" id="L18">    }</span>
+
+    /**
+     * read Dager object from json using ObjectMapper
+     * @param reader - Reader object
+     * @return dager - Dager object
+     */
+    public Dager readDager(Reader reader) throws IOException {
+<span class="fc" id="L26">        Dager dager = mapper.readValue(reader, Dager.class);</span>
+<span class="fc" id="L27">        return dager;</span>
+    }
+
+    /**
+     * Write Dager object to json using ObjectMapper, such that the data is layed out vertically
+     * @param dager - Dager object
+     * @param writer - Writer object
+     * @throws IOException
+     */
+    public void writeDager(Dager dager, Writer writer) throws IOException{
+<span class="fc" id="L37">        mapper.writerWithDefaultPrettyPrinter().writeValue(writer, dager);</span>
+<span class="fc" id="L38">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

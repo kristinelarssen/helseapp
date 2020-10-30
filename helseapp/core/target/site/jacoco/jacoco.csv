@@ -1,0 +1,11 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+core,helseapp.core,Dager,0,86,0,0,0,22,0,11,0,11
+core,helseapp.core,Dag,0,45,0,0,0,16,0,8,0,8
+core,helseapp.core,Grafmetoder,41,0,2,0,7,0,3,0,2,0
+core,helseapp.json,DagerModule,0,33,0,0,0,6,0,1,0,1
+core,helseapp.json,DagerDeserializer,2,51,1,3,1,11,1,3,0,2
+core,helseapp.json,DagDeserializer,71,58,5,1,15,12,4,2,1,2
+core,helseapp.json,DagSerializer,0,44,0,0,0,11,0,2,0,2
+core,helseapp.json,DagerSerializer,0,24,0,2,0,7,0,3,0,2
+core,helseapp.json,FileData,101,0,8,0,31,0,8,0,4,0
+core,helseapp.json,DagPersistance,0,31,0,0,0,8,0,3,0,3

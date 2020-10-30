@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dager.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">helseapp.core</a> &gt; <span class="el_source">Dager.java</span></div><h1>Dager.java</h1><pre class="source lang-java linenums">package helseapp.core;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+
+public class Dager implements Iterable&lt;Dag&gt; {
+
+    //liste med dag objekter
+
+<span class="fc" id="L12">    final List&lt;Dag&gt; dager = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L14">    public Dager() {</span>
+<span class="fc" id="L15">    }</span>
+    /*
+    public Dager(final double... DagerArray) {
+        addDager(DagerArray);
+    }
+    */
+
+    /**
+	* metode for å legge til dager
+	* @param dager - dager objekt
+	*/
+
+<span class="fc" id="L27">    public Dager(final Dag... dager) {</span>
+<span class="fc" id="L28">        addDager(dager);</span>
+<span class="fc" id="L29">    }</span>
+
+    /**
+	* metode for å legge til dager
+	* @param dager - dager objekt
+	*/
+
+<span class="fc" id="L36">    public Dager(final Collection&lt;Dag&gt; dager) {</span>
+<span class="fc" id="L37">        addDager(dager);</span>
+<span class="fc" id="L38">    }</span>
+
+    /**
+	* iterator for dager
+	* @return dager - iterator for elementene i dager
+	*/
+
+    @Override
+    public Iterator&lt;Dag&gt; iterator() {
+<span class="fc" id="L47">        return dager.iterator();</span>
+    }
+
+    /**
+	* henter størrelsen på dager listen
+	* @return dager.size() - størrelsen på dager listen
+	*/
+
+    public int getDagCount() {
+<span class="fc" id="L56">        return dager.size();</span>
+    }
+
+    /**
+	* henter dagen med indeks num
+	* @param num - indeks tall for hvilken dag som skal hentes ut
+	* @return dag - dag med indeksen num som hentes ut
+	*/
+
+    public Dag getDag(final int num) {
+<span class="fc" id="L66">        return dager.get(num);</span>
+    }
+
+    /**
+	* metode for å sette et nummer for et dagobjekt
+	* @param num - nummer som skal settes for dagobjekt
+	* @param dag - dag som skal få satt et nummer til seg
+	*/
+
+
+    public void setDag(final int num, final Dag dag) {
+<span class="fc" id="L77">        dager.set(num, dag);</span>
+<span class="fc" id="L78">    }</span>
+
+    /**
+	* metode for å legge til dag i listen av dagerobjekt
+	* @param dag - dagen som skal legges til
+	* @return pos - posisjonen til dag objektet i dager listen
+	*/
+
+    public int addDag(final Dag dag) {
+<span class="fc" id="L87">        final int pos = dager.size();</span>
+<span class="fc" id="L88">        dager.add(dag);</span>
+<span class="fc" id="L89">        return pos;</span>
+    }
+
+    /**
+	* metode for å legge til en collection av dager på slutten av listen av dagerobjekt
+	* @param dager - collection av dagerobjekt som skal legges til
+	* @return pos - posisjon til første av dagene som legges til
+	*/
+
+    public final int addDager(final Collection&lt;Dag&gt; dager) {
+<span class="fc" id="L99">        final int pos = this.dager.size();</span>
+<span class="fc" id="L100">        this.dager.addAll(dager);</span>
+<span class="fc" id="L101">        return pos;</span>
+    }
+
+	/**
+	* metode for å gjøre en liste med dagerobjekter til en collection og legge dem til liste av eksisterende dagerobjekt
+	* @param dager - liste av dagerobjekt som skal legges til
+	* @return addDager - kaller metoden over og returnerer pos, posisjonen til første av dagene som legges til
+	*/
+
+    public final int addDager(final Dag... dager) {
+<span class="fc" id="L111">        return addDager(List.of(dager));</span>
+    }
+
+    /*
+    public final int addDager(final double... DagerArray) {
+        final Collection&lt;Dag&gt; Dager = new ArrayList&lt;&gt;(DagerArray.length / 2);
+        for (int i = 0; i &lt; DagerArray.length; i += 2) {
+            Dager.add(new Dag(DagerArray[i], DagerArray[i + 1]));
+        }
+        return addDager(Dager);
+    }
+    */
+
+    /**
+	* Fjerner dag objekt i listen dager med indeks num
+	* @param num - indeks for hvilken dag som skal bli fjernet
+	* @return dager - returnerer listen dager uten dag objektet som ble fjernet
+	*/
+
+    public Dag removeDag(final int num) {
+<span class="fc" id="L131">        return dager.remove(num);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

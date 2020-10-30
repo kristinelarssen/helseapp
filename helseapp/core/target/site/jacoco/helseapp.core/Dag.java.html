@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Dag.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">core</a> &gt; <a href="index.source.html" class="el_package">helseapp.core</a> &gt; <span class="el_source">Dag.java</span></div><h1>Dag.java</h1><pre class="source lang-java linenums">package helseapp.core;
+
+import java.time.LocalDate;
+
+public class Dag{
+
+    //Definerer alle variablene dag objektet trenger
+
+    private double vekt;
+    private double skritt;
+    private double treningstid;
+    private double protein;
+    private double karbo;
+    private double fett;
+    private LocalDate date;
+
+    /**
+	* klasse konstruktør
+	* @param vekt - vekten til brukeren
+	* @param skritt - antall skritt
+	* @param treningstid - tid brukt til trening
+	* @param protein - mengde protein inntatt
+	* @param karbo - mengde karbohydrater inntatt
+	* @param fett - mengde fett inntatt
+	* @param date - dato for dagen
+	*/
+
+<span class="fc" id="L28">    public Dag(double vekt, double skritt, double treningstid, double protein, double karbo, double fett, LocalDate date) {</span>
+<span class="fc" id="L29">        this.vekt = vekt;</span>
+<span class="fc" id="L30">        this.skritt = skritt;</span>
+<span class="fc" id="L31">        this.treningstid = treningstid;</span>
+<span class="fc" id="L32">        this.protein = protein;</span>
+<span class="fc" id="L33">        this.karbo = karbo;</span>
+<span class="fc" id="L34">        this.fett = fett;</span>
+<span class="fc" id="L35">        this.date = date;</span>
+<span class="fc" id="L36">    }</span>
+    
+	/**
+	* henter vekten til brukeren
+	* @return vekt - brukers vekt
+	*/
+
+    public double getVekt() {
+<span class="fc" id="L44">        return vekt;</span>
+    }
+
+    /**
+	* henter treningstiden til brukeren
+	* @return treningstid - brukers treningstid
+	*/
+
+    public double getTreningstid() {
+<span class="fc" id="L53">        return treningstid;</span>
+    }
+
+	/**
+	* henter proteininntaket til brukeren
+	* @return protein - mengde protein inntatt
+	*/
+
+    public double getProtein() {
+<span class="fc" id="L62">        return protein;</span>
+    }
+
+	/**
+	* henter karbohydratinntaket til brukeren
+	* @return karbo - mengde karbohydrater inntatt
+	*/
+
+    public double getKarbo() {
+<span class="fc" id="L71">        return karbo;</span>
+    }
+
+	/**
+	* henter fettinntaket til brukeren
+	* @return fett - mengde fett inntatt
+	*/
+
+    public double getFett() {
+<span class="fc" id="L80">        return fett;</span>
+    }
+
+	/**
+	* henter antall skritt til brukeren
+	* @return skritt - antall skritt
+	*/
+
+    public double getSkritt() {
+<span class="fc" id="L89">        return skritt;</span>
+    }
+
+	/**
+	* henter datoen
+	* @return date - datoen for dagen
+	*/
+
+<span class="fc" id="L97">    public LocalDate getDate() { return date; }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

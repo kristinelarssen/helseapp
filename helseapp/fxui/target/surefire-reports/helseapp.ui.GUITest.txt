@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: helseapp.ui.GUITest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.003 s <<< FAILURE! - in helseapp.ui.GUITest
+helseapp.ui.GUITest.testHenteData  Time elapsed: 0.783 s  <<< ERROR!
+java.lang.IllegalArgumentException: argument "src" is null
+	at helseapp.ui.GUITest.testHenteData(GUITest.java:98)
+
