@@ -172,6 +172,18 @@
                                 </LineChart>
                             </VBox>
                         </Tab>
+                        <Tab text="Kalorier">
+                            <VBox prefHeight="450" prefWidth="600.0">
+                                <LineChart fx:id="kaloriChart" animated="false">
+                                    <xAxis>
+                                        <CategoryAxis label="Dato" side="BOTTOM"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Kalorier" side="LEFT"/>
+                                    </yAxis>
+                                </LineChart>
+                            </VBox>
+                        </Tab>
                     </TabPane>
                 </VBox>
             </Tab>

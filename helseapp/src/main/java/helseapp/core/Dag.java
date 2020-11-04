@@ -89,6 +89,17 @@ public class Dag{
         return skritt;
     }
 
+    /**
+     * henter kaloriantallet ut fra hvor mye fett,
+     * karbohydrater og proteinter brukeren har konsumert
+     * 9 = kal per fettgram, 4 = kal per protein og karbogram
+     * @return kalorier - antall kalorier basert på inntak
+     */
+
+    public double getKalorier() {
+        return (9*getFett()+4*(getKarbo()+getProtein()));
+    }
+
 	/**
 	* henter datoen
 	* @return date - datoen for dagen

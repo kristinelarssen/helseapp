@@ -32,7 +32,7 @@ public class GUIController implements Initializable {
     DatePicker datoPicker, fraDato, tilDato;
 
     @FXML
-    LineChart<String, Number> vektChart, skrittChart;
+    LineChart<String, Number> vektChart, skrittChart, kaloriChart;
 
     /**
      * Lagrer data fra TextField-feltene i appen.
@@ -133,6 +133,7 @@ public class GUIController implements Initializable {
     void populateGraphs(int antallDager, LocalDate startDate) {
         Double[][] vektData = new Double[antallDager][3];
         Double[][] skrittData = new Double[antallDager][3];
+        Double[][] kaloriData = new Double[antallDager][3];
         Dager dager = fileData.read(savePath);
         Dag dag = null;
         for(int i = 0; i < antallDager; i++) {
@@ -145,16 +146,21 @@ public class GUIController implements Initializable {
             skrittData[i][2] = (double) startDate.plusDays(i).getMonthValue();
             vektData[i][1] = (double) startDate.plusDays(i).getDayOfMonth();
             vektData[i][2] = (double) startDate.plusDays(i).getMonthValue();
+            kaloriData[i][1] = (double) startDate.plusDays(i).getMonthValue();
+            kaloriData[i][2] = (double) startDate.plusDays(i).getMonthValue();
             if(dag != null) {
                 vektData[i][0] = dag.getVekt();
                 skrittData[i][0] = dag.getSkritt();
+                kaloriData[i][0] = dag.getKalorier();
             } else {
                 vektData[i][0] = 0.0;
                 skrittData[i][0] = 0.0;
+                kaloriData[i][0] = 0.0;
             }
         }
         Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
         Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
+        Grafmetoder.leggDataIGraf(kaloriData, kaloriChart, "Kalorier");
     }
 
     /**
