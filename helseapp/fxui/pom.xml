@@ -21,8 +21,9 @@
         <dependency>
             <groupId>it1901-59.helseapp</groupId>
 	        <artifactId>core</artifactId>
-	        <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
