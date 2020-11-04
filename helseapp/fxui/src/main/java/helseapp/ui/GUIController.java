@@ -18,7 +18,7 @@ import helseapp.json.DagPersistance;
 public class GUIController implements Initializable {
     private Double[][] vektData = new Double[7][2];
     private Double[][] skrittData = new Double[7][2];
-    String savePath = "src/main/java/helseapp/json/dager.json";
+    String savePath = "../core/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
 
@@ -53,7 +53,7 @@ public class GUIController implements Initializable {
         tekstData[3] = proteinField.getText();
         tekstData[4] = karboField.getText();
         tekstData[5] = fettField.getText();
-        for(int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             try {
                 tallData[i] = Double.parseDouble(tekstData[i]);
             } catch (NumberFormatException e) {
@@ -81,8 +81,8 @@ public class GUIController implements Initializable {
         LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
         Dager dager = fileData.read(savePath);
         Dag dag = null;
-        for(int i = 0; i < dager.getDagCount(); i++) {
-            if(dager.getDag(i).getDate().toString().equals(date.toString())) {
+        for (int i = 0; i < dager.getDagCount(); i++) {
+            if (dager.getDag(i).getDate().toString().equals(date.toString())) {
                 dag = dager.getDag(i);
             }
         }
@@ -93,6 +93,7 @@ public class GUIController implements Initializable {
 
     /**
      * Setter TextFields-feltene i appen med info lagret i Dag-objetket
+     *
      * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
      */
     void setDataFields(Dag dag) {
@@ -122,6 +123,7 @@ public class GUIController implements Initializable {
      * Legger inn testdata i grafene
      * Viser grafene i appen
      * Setter datoen i DatePicker til dagens dato
+     *
      * @param location
      * @param resources
      */
@@ -130,10 +132,10 @@ public class GUIController implements Initializable {
         Platform.runLater(() -> {
             //Testdata for grafene
             for (int i = 0; i < 7; i++) {
-                vektData[i][0] = Double.parseDouble(((27+i)%31) + "");
-                vektData[i][1] = Double.parseDouble((70+i) + "");
-                skrittData[i][0] = Double.parseDouble(((27+i)%31) + "");
-                skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random()*20000) + "");
+                vektData[i][0] = Double.parseDouble(((27 + i) % 31) + "");
+                vektData[i][1] = Double.parseDouble((70 + i) + "");
+                skrittData[i][0] = Double.parseDouble(((27 + i) % 31) + "");
+                skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random() * 20000) + "");
             }
             Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
             Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");

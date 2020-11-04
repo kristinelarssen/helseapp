@@ -43,7 +43,7 @@ public class GUITest extends ApplicationTest {
 
     @BeforeEach
     void setupItems() throws Exception {
-        controller.savePath = "core/src/main/java/helseapp/json/dager.json";
+        controller.savePath = "../core/src/main/java/helseapp/json/dager.json";
         ApplicationTest.launch(GUI.class);
         vektField = controller.vektField; //lookup("#vektField").query();
         skrittField = controller.skrittField;
@@ -92,7 +92,6 @@ public class GUITest extends ApplicationTest {
         assertEquals(fettField.getText(), "100.0");
     }
 
-    /*
     @Test
     void testHenteData() {
         controller.datoPicker.setValue(LocalDate.of(2020, Month.DECEMBER, 1));
@@ -104,5 +103,4 @@ public class GUITest extends ApplicationTest {
         assertEquals(karboField.getText(), "300.0");
         assertEquals(fettField.getText(), "50.0");
     }
-    */
 }
