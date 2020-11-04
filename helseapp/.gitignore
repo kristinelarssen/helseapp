@@ -1,4 +1,6 @@
 /target
+core/target/
+fxui/target/
 /.settings
 /bin
 .classpath

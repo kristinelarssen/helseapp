@@ -8,8 +8,6 @@ import javafx.stage.Stage;
 
 public class GUI extends Application {
 
-    private Scene dataScene;
-
     /**
      * Åpner et vindu, henter designet til appen fra FXML-dokumentet,
      * setter tittel på vinduet og viser vinduet

@@ -21,8 +21,9 @@
         <dependency>
             <groupId>it1901-59.helseapp</groupId>
 	        <artifactId>core</artifactId>
-	        <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        
 
         <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
@@ -123,8 +124,11 @@
 				<artifactId>maven-checkstyle-plugin</artifactId>
 			</plugin>
 
-            <!-- Spotbugs (KOMMER)-->
-
+            <!-- Run the spotbugs code quality tool -->
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+            </plugin>
 
 			<!-- Configure jacoco code coverage   / testdekningsgrad -->
 			<plugin>
