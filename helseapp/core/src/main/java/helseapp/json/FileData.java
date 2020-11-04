@@ -54,6 +54,15 @@ public class FileData {
         } catch (IOException e) {
             System.err.println("Feil_2");
         }
+        finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    System.out.println("Feil_3");
+                }
+            }
+        }
         return dager;
     }
 
