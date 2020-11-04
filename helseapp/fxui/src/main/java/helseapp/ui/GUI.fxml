@@ -127,34 +127,53 @@
                 </AnchorPane>
             </Tab>
             <Tab text="Se dine data">
-                <TabPane prefHeight="450" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
-                    <Tab text="Vekt">
-                        <VBox prefHeight="450" prefWidth="600.0">
-                            <Label text="Dette er statisk data, og skal byttes ut til neste innlevering"/>
-                            <LineChart fx:id="vektChart">
-                                <xAxis>
-                                    <CategoryAxis label="Dato" side="BOTTOM"/>
-                                </xAxis>
-                                <yAxis>
-                                    <NumberAxis label="Vekt" side="LEFT"/>
-                                </yAxis>
-                            </LineChart>
-                        </VBox>
-                    </Tab>
-                    <Tab text="Skritt">
-                        <VBox prefHeight="450" prefWidth="600.0">
-                            <Label text="Dette er tilfeldig generert data, og skal byttes ut til neste innlevering"/>
-                            <LineChart fx:id="skrittChart">
-                                <xAxis>
-                                    <CategoryAxis label="Dato" side="BOTTOM"/>
-                                </xAxis>
-                                <yAxis>
-                                    <NumberAxis label="Skritt" side="LEFT"/>
-                                </yAxis>
-                            </LineChart>
-                        </VBox>
-                    </Tab>
-                </TabPane>
+                <VBox>
+                    <GridPane hgap="10">
+                        <padding>
+                            <Insets bottom="10" left="10" right="10" top="10"/>
+                        </padding>
+                        <Label text="Startdato" GridPane.ColumnIndex="0" GridPane.rowIndex="0">
+                            <font>
+                                <Font name="Arial" size="12.0"/>
+                            </font>
+                        </Label>
+                        <Label text="Sluttdato" GridPane.ColumnIndex="1" GridPane.rowIndex="0">
+                            <font>
+                                <Font name="Arial" size="12.0"/>
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="fraDato" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="tilDato" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Button fx:id="visGraf" mnemonicParsing="false" onAction="#visGraf"
+                                text="Vis graf" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                    </GridPane>
+                    <TabPane prefHeight="450" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
+                        <Tab text="Vekt">
+                            <VBox prefHeight="450" prefWidth="600.0">
+                                <LineChart fx:id="vektChart" animated="false">
+                                    <xAxis>
+                                        <CategoryAxis label="Dato" side="BOTTOM"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Vekt" side="LEFT"/>
+                                    </yAxis>
+                                </LineChart>
+                            </VBox>
+                        </Tab>
+                        <Tab text="Skritt">
+                            <VBox prefHeight="450" prefWidth="600.0">
+                                <LineChart fx:id="skrittChart" animated="false">
+                                    <xAxis>
+                                        <CategoryAxis label="Dato" side="BOTTOM"/>
+                                    </xAxis>
+                                    <yAxis>
+                                        <NumberAxis label="Skritt" side="LEFT"/>
+                                    </yAxis>
+                                </LineChart>
+                            </VBox>
+                        </Tab>
+                    </TabPane>
+                </VBox>
             </Tab>
         </TabPane>
     </VBox>

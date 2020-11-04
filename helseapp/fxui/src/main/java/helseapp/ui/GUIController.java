@@ -13,11 +13,9 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import helseapp.json.DagPersistance;
-
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class GUIController implements Initializable {
-    private Double[][] vektData = new Double[7][2];
-    private Double[][] skrittData = new Double[7][2];
     String savePath = "../core/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
@@ -28,14 +26,13 @@ public class GUIController implements Initializable {
     TextField vektField, skrittField, treningField, proteinField, karboField, fettField;
 
     @FXML
-    Button lagreButton, henteButton;
+    Button lagreButton, henteButton, visGraf;
 
     @FXML
-    DatePicker datoPicker;
+    DatePicker datoPicker, fraDato, tilDato;
 
     @FXML
     LineChart<String, Number> vektChart, skrittChart;
-
 
     /**
      * Lagrer data fra TextField-feltene i appen.
@@ -81,8 +78,8 @@ public class GUIController implements Initializable {
         LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
         Dager dager = fileData.read(savePath);
         Dag dag = null;
-        for (int i = 0; i < dager.getDagCount(); i++) {
-            if (dager.getDag(i).getDate().toString().equals(date.toString())) {
+        for(int i = 0; i < dager.getDagCount(); i++) {
+            if(dager.getDag(i).getDate().equals(date)) {
                 dag = dager.getDag(i);
             }
         }
@@ -92,8 +89,18 @@ public class GUIController implements Initializable {
     }
 
     /**
+     * Kalles når visGraf-knappen trykkes
+     * Viser graf med lagret data for intervallet mellom startDato og sluttDato
+     */
+    @FXML
+    void visGraf() {
+        LocalDate startDato = fraDato.getValue();
+        LocalDate sluttDato = tilDato.getValue();
+        populateGraphs((int) DAYS.between(startDato, sluttDato) + 1, startDato);
+    }
+
+    /**
      * Setter TextFields-feltene i appen med info lagret i Dag-objetket
-     *
      * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
      */
     void setDataFields(Dag dag) {
@@ -119,27 +126,47 @@ public class GUIController implements Initializable {
     }
 
     /**
+     * Henter data som er lagret og legger det inn i grafene. Viser deretter grafene
+     * @param antallDager Antall dager som skal vises i grafen
+     * @param startDate Den første datoen som skal vises i grafen
+     */
+    void populateGraphs(int antallDager, LocalDate startDate) {
+        Double[][] vektData = new Double[antallDager][3];
+        Double[][] skrittData = new Double[antallDager][3];
+        Dager dager = fileData.read(savePath);
+        Dag dag = null;
+        for(int i = 0; i < antallDager; i++) {
+            for(int j = 0; j < dager.getDagCount(); j++) {
+                if(dager.getDag(j).getDate().equals(startDate.plusDays(i))) {
+                    dag = dager.getDag(j);
+                }
+            }
+            skrittData[i][1] = (double) startDate.plusDays(i).getDayOfMonth();
+            skrittData[i][2] = (double) startDate.plusDays(i).getMonthValue();
+            vektData[i][1] = (double) startDate.plusDays(i).getDayOfMonth();
+            vektData[i][2] = (double) startDate.plusDays(i).getMonthValue();
+            if(dag != null) {
+                vektData[i][0] = dag.getVekt();
+                skrittData[i][0] = dag.getSkritt();
+            } else {
+                vektData[i][0] = 0.0;
+                skrittData[i][0] = 0.0;
+            }
+        }
+        Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
+        Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
+    }
+
+    /**
      * Initialiserer appen
      * Legger inn testdata i grafene
      * Viser grafene i appen
      * Setter datoen i DatePicker til dagens dato
-     *
      * @param location
      * @param resources
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(() -> {
-            //Testdata for grafene
-            for (int i = 0; i < 7; i++) {
-                vektData[i][0] = Double.parseDouble(((27 + i) % 31) + "");
-                vektData[i][1] = Double.parseDouble((70 + i) + "");
-                skrittData[i][0] = Double.parseDouble(((27 + i) % 31) + "");
-                skrittData[i][1] = Double.parseDouble((5000) + Math.round(Math.random() * 20000) + "");
-            }
-            Grafmetoder.leggDataIGraf(vektData, vektChart, "Vekt");
-            Grafmetoder.leggDataIGraf(skrittData, skrittChart, "Skritt");
-            datoPicker.setValue(LocalDate.now());
-        });
+        Platform.runLater(() -> datoPicker.setValue(LocalDate.now()));
     }
 }

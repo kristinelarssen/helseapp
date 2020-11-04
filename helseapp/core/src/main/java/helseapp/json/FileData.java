@@ -75,7 +75,7 @@ public class FileData {
     public void saveDag(Dag dag, String filePath){
         Dager dager = read(filePath);
         for(int i = 0; i < dager.getDagCount(); i++) {
-            if(dager.getDag(i).getDate().toString().equals(dag.getDate().toString())) {
+            if(dager.getDag(i).getDate().equals(dag.getDate())) {
                 dager.removeDag(i);
             }
         }
