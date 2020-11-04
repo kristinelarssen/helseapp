@@ -180,6 +180,7 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            
 		</plugins>
 
 		<!-- Konfigurert så FXML-filene ligger i java-mappen -->
