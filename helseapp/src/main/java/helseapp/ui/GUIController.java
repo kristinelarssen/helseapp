@@ -146,7 +146,7 @@ public class GUIController implements Initializable {
             skrittData[i][2] = (double) startDate.plusDays(i).getMonthValue();
             vektData[i][1] = (double) startDate.plusDays(i).getDayOfMonth();
             vektData[i][2] = (double) startDate.plusDays(i).getMonthValue();
-            kaloriData[i][1] = (double) startDate.plusDays(i).getMonthValue();
+            kaloriData[i][1] = (double) startDate.plusDays(i).getDayOfMonth();
             kaloriData[i][2] = (double) startDate.plusDays(i).getMonthValue();
             if(dag != null) {
                 vektData[i][0] = dag.getVekt();
