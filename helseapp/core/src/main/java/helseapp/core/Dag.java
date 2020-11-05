@@ -2,97 +2,108 @@ package helseapp.core;
 
 import java.time.LocalDate;
 
-public class Dag{
+public class Dag {
 
-    //Definerer alle variablene dag objektet trenger
+  // Definerer alle variablene dag objektet trenger
 
-    private double vekt;
-    private double skritt;
-    private double treningstid;
-    private double protein;
-    private double karbo;
-    private double fett;
-    private LocalDate date;
+  private double vekt;
+  private double skritt;
+  private double treningstid;
+  private double protein;
+  private double karbo;
+  private double fett;
+  private LocalDate date;
 
-    /**
-	* klasse konstruktør
-	* @param vekt - vekten til brukeren
-	* @param skritt - antall skritt
-	* @param treningstid - tid brukt til trening
-	* @param protein - mengde protein inntatt
-	* @param karbo - mengde karbohydrater inntatt
-	* @param fett - mengde fett inntatt
-	* @param date - dato for dagen
-	*/
+  /**
+   * klasse konstruktør.
+   *
+   * @param vekt        - vekten til brukeren
+   * @param skritt      - antall skritt
+   * @param treningstid - tid brukt til trening
+   * @param protein     - mengde protein inntatt
+   * @param karbo       - mengde karbohydrater inntatt
+   * @param fett        - mengde fett inntatt
+   * @param date        - dato for dagen
+   */
 
-    public Dag(double vekt, double skritt, double treningstid, double protein, double karbo, double fett, LocalDate date) {
-        this.vekt = vekt;
-        this.skritt = skritt;
-        this.treningstid = treningstid;
-        this.protein = protein;
-        this.karbo = karbo;
-        this.fett = fett;
-        this.date = date;
-    }
-    
-	/**
-	* henter vekten til brukeren
-	* @return vekt - brukers vekt
-	*/
+  public Dag(double vekt, double skritt, double treningstid, double protein, double karbo, 
+      double fett, LocalDate date) {
+    this.vekt = vekt;
+    this.skritt = skritt;
+    this.treningstid = treningstid;
+    this.protein = protein;
+    this.karbo = karbo;
+    this.fett = fett;
+    this.date = date;
+  }
 
-    public double getVekt() {
-        return vekt;
-    }
+  /**
+   * henter vekten til brukeren.
+   *
+   * @return vekt - brukers vekt
+   */
 
-    /**
-	* henter treningstiden til brukeren
-	* @return treningstid - brukers treningstid
-	*/
+  public double getVekt() {
+    return vekt;
+  }
 
-    public double getTreningstid() {
-        return treningstid;
-    }
+  /**
+   * henter treningstiden til brukeren.
+   *
+   * @return treningstid - brukers treningstid
+   */
 
-	/**
-	* henter proteininntaket til brukeren
-	* @return protein - mengde protein inntatt
-	*/
+  public double getTreningstid() {
+    return treningstid;
+  }
 
-    public double getProtein() {
-        return protein;
-    }
+  /**
+   * henter proteininntaket til brukeren.
+   *
+   * @return protein - mengde protein inntatt
+   */
 
-	/**
-	* henter karbohydratinntaket til brukeren
-	* @return karbo - mengde karbohydrater inntatt
-	*/
+  public double getProtein() {
+    return protein;
+  }
 
-    public double getKarbo() {
-        return karbo;
-    }
+  /**
+   * henter karbohydratinntaket til brukeren.
+   *
+   * @return karbo - mengde karbohydrater inntatt
+   */
 
-	/**
-	* henter fettinntaket til brukeren
-	* @return fett - mengde fett inntatt
-	*/
+  public double getKarbo() {
+    return karbo;
+  }
 
-    public double getFett() {
-        return fett;
-    }
+  /**
+   * henter fettinntaket til brukeren.
+   *
+   * @return fett - mengde fett inntatt
+   */
 
-	/**
-	* henter antall skritt til brukeren
-	* @return skritt - antall skritt
-	*/
+  public double getFett() {
+    return fett;
+  }
 
-    public double getSkritt() {
-        return skritt;
-    }
+  /**
+   * henter antall skritt til brukeren.
+   *
+   * @return skritt - antall skritt
+   */
 
-	/**
-	* henter datoen
-	* @return date - datoen for dagen
-	*/
+  public double getSkritt() {
+    return skritt;
+  }
 
-    public LocalDate getDate() { return date; }
+  /**
+   * henter datoen.
+   *
+   * @return date - datoen for dagen
+   */
+
+  public LocalDate getDate() {
+    return date;
+  }
 }
