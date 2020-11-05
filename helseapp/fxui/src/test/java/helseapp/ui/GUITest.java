@@ -43,7 +43,7 @@ public class GUITest extends ApplicationTest {
 
     @BeforeEach
     void setupItems() throws Exception {
-        controller.savePath = "src/test/java/helseapp/json/dager.json";
+        controller.savePath = "../core/src/main/java/helseapp/json/dager.json";
         ApplicationTest.launch(GUI.class);
         vektField = controller.vektField; //lookup("#vektField").query();
         skrittField = controller.skrittField;

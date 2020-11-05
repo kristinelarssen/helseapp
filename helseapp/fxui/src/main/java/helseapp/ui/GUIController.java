@@ -16,7 +16,7 @@ import helseapp.json.DagPersistance;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class GUIController implements Initializable {
-    String savePath = "src/main/java/helseapp/json/dager.json";
+    String savePath = "../core/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
     private FileData fileData = new FileData(dagPersistance);
 
@@ -50,7 +50,7 @@ public class GUIController implements Initializable {
         tekstData[3] = proteinField.getText();
         tekstData[4] = karboField.getText();
         tekstData[5] = fettField.getText();
-        for(int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) {
             try {
                 tallData[i] = Double.parseDouble(tekstData[i]);
             } catch (NumberFormatException e) {
