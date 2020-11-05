@@ -57,6 +57,7 @@ public class GUIController implements Initializable {
                 fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
             } catch (NumberFormatException e) {
                 tallData[i] = 0.0;
+                vektfield.setText("")
                 JOptionPane.showMessageDialog(null, "Du må skrive inn et tall som vekt", "Feil input:", JOptionPane.WARNING_MESSAGE);
             }
         }
