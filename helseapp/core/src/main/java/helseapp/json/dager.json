@@ -94,4 +94,12 @@
   "Karbohydrater" : 1.0,
   "Fett" : 2.0,
   "Dato" : "2020-10-08"
+}, {
+  "Vekt" : 40.0,
+  "Skritt" : 3000.0,
+  "Treningstid" : 20.0,
+  "Protein" : 3.0,
+  "Karbohydrater" : 50.0,
+  "Fett" : 20.0,
+  "Dato" : "2020-11-11"
 } ]

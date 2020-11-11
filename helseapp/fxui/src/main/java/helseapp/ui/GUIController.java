@@ -3,7 +3,6 @@ package helseapp.ui;
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 import helseapp.json.DagPersistance;
-import helseapp.json.FileData;
 import java.net.URL;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -19,7 +18,7 @@ import javafx.scene.control.TextField;
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
   private DagPersistance dagPersistance = new DagPersistance();
-  private FileData fileData = new FileData(dagPersistance);
+ // private FileData fileData = new FileData(dagPersistance);
 
   // Definerer alle FXML-elementene
 
@@ -95,7 +94,7 @@ public class GUIController implements Initializable {
       }
     }
     // Lagring:
-    fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
+    dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
   }
 
   /**
@@ -113,7 +112,7 @@ public class GUIController implements Initializable {
   @FXML
   void henteData() {
     LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
-    Dager dager = fileData.read(savePath);
+    Dager dager = dagPersistance.read(savePath);
     Dag dag = null;
     for (int i = 0; i < dager.getDagCount(); i++) {
       if (dager.getDag(i).getDate().equals(date)) {
@@ -175,7 +174,7 @@ public class GUIController implements Initializable {
    */
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
-    Dager dager = fileData.read(savePath);
+    Dager dager = dagPersistance.read(savePath);
     Dag dag = null;
     for(int i = 0; i < antallDager; i++) {
       for(int j = 0; j < dager.getDagCount(); j++) {
