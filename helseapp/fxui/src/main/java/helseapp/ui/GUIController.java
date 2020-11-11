@@ -13,6 +13,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import helseapp.json.DagPersistance;
+import javax.swing.JOptionPane;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 public class GUIController implements Initializable {
@@ -56,9 +57,8 @@ public class GUIController implements Initializable {
                 // Lagring:
                 fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
             } catch (NumberFormatException e) {
-                tallData[i] = 0.0;
-                vektfield.setText("")
-                JOptionPane.showMessageDialog(null, "Du må skrive inn et tall som vekt", "Feil input:", JOptionPane.WARNING_MESSAGE);
+                vektField.setText("");
+                JOptionPane.showMessageDialog(null, "Du må skrive inn et tall som vekt", "Feil input", JOptionPane.WARNING_MESSAGE);
             }
         }
 
