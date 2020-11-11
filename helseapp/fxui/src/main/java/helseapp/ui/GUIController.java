@@ -2,7 +2,12 @@ package helseapp.ui;
 
 import helseapp.core.Dag;
 import helseapp.core.Dager;
+import helseapp.json.DagPersistance;
 import helseapp.json.FileData;
+import java.net.URL;
+import java.time.LocalDate;
+import static java.time.temporal.ChronoUnit.DAYS;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -10,18 +15,13 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-import helseapp.json.DagPersistance;
-import static java.time.temporal.ChronoUnit.DAYS;
 
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
   private DagPersistance dagPersistance = new DagPersistance();
   private FileData fileData = new FileData(dagPersistance);
 
-  //Definerer alle FXML-elementene
+  // Definerer alle FXML-elementene
 
   @FXML
   TextField vektField;
@@ -115,8 +115,8 @@ public class GUIController implements Initializable {
     LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
     Dager dager = fileData.read(savePath);
     Dag dag = null;
-    for(int i = 0; i < dager.getDagCount(); i++) {
-      if(dager.getDag(i).getDate().equals(date)) {
+    for (int i = 0; i < dager.getDagCount(); i++) {
+      if (dager.getDag(i).getDate().equals(date)) {
         dag = dager.getDag(i);
       }
     }
@@ -126,8 +126,8 @@ public class GUIController implements Initializable {
   }
 
   /**
-   * Kalles når visGraf-knappen trykkes.
-   * Viser graf med lagret data for intervallet mellom startDato og sluttDato
+   * Kalles når visGraf-knappen trykkes Viser graf med lagret data for intervallet.
+   * mellom startDato og sluttDato
    */
   @FXML
   void visGraf() {
@@ -142,19 +142,23 @@ public class GUIController implements Initializable {
    * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
    */
   void setDataFields(Dag dag) {
-    setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())), Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
+    setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())),
+      Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()),
+      Double.toString(dag.getFett()));
   }
 
   /**
    * Setter TextFields-feltene i appen med info fra parameterne.
-   * @param vekt Legges inn i vekt-feltet
-   * @param skritt Legges inn i skritt-feltet
-   * @param treningstid Legges inn i treningstid-feltet
-   * @param protein Legges inn i protein-feltet
+   *
+   * @param vekt          Legges inn i vekt-feltet
+   * @param skritt        Legges inn i skritt-feltet
+   * @param treningstid   Legges inn i treningstid-feltet
+   * @param protein       Legges inn i protein-feltet
    * @param karbohydrater Legges inn i karbohydrater-feltet
-   * @param fett Legges inn i fett-feltet
+   * @param fett          Legges inn i fett-feltet
    */
-  void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater, String fett) {
+  void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater,
+      String fett) {
     vektField.setText(vekt);
     skrittField.setText(skritt);
     treningField.setText(treningstid);
@@ -195,8 +199,7 @@ public class GUIController implements Initializable {
 
   /**
    * Initialiserer appen.
-   * Legger inn testdata i grafene
-   * Viser grafene i appen
+   * Legger inn testdata i grafene Viser grafene i appen.
    * Setter datoen i DatePicker til dagens dato
    *
    * @param location

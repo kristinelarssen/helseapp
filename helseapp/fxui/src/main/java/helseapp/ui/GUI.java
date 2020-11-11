@@ -9,7 +9,8 @@ import javafx.stage.Stage;
 public class GUI extends Application {
 
   /**
-   * Åpner et vindu, henter designet til appen fra FXML-dokumentet, setter tittel på vinduet og viser vinduet.
+   * Åpner et vindu, og henter designet til appen fra FXML-dokumentet.
+   * Setter tittel på vinduet og viser vinduet.
    *
    * @param primaryStage Vinduet appen vises i
    * @throws Exception Exception
