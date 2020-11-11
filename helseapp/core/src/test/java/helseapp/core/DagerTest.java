@@ -36,6 +36,7 @@ class DagerTest {
         assertEquals(dag.getProtein(), addedDag.getProtein());
         assertEquals(dag.getTreningstid(), addedDag.getTreningstid());
         assertEquals(dag.getDate(), addedDag.getDate());
+        assertEquals(dag.getKalorier(), addedDag.getKalorier());
     }
 
     /* Hjelpemetode til  */
