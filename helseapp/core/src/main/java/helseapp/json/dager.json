@@ -1,12 +1,4 @@
 [ {
-  "Vekt" : 1.0,
-  "Skritt" : 1.0,
-  "Treningstid" : 1.0,
-  "Protein" : 1.0,
-  "Karbohydrater" : 1.0,
-  "Fett" : 2.0,
-  "Dato" : "2020-10-08"
-}, {
   "Vekt" : 3.0,
   "Skritt" : 4.0,
   "Treningstid" : 4.0,
@@ -94,4 +86,12 @@
   "Karbohydrater" : 0.0,
   "Fett" : 0.0,
   "Dato" : "2020-10-15"
+}, {
+  "Vekt" : 10.0,
+  "Skritt" : 2.0,
+  "Treningstid" : 1.0,
+  "Protein" : 1.0,
+  "Karbohydrater" : 1.0,
+  "Fett" : 2.0,
+  "Dato" : "2020-10-08"
 } ]
