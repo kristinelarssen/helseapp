@@ -54,25 +54,7 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
       final LocalDate date = LocalDate.parse(date_string);
       // Create the object
       return new Dag(vekt, skritt, treningstid, protein, karbo, fett, date);
-      
-      // If the json-node is an ArrayNode
-    } else if (jsonNode instanceof ArrayNode) {
-      // Creates ArrayNode from the json-node
-      final ArrayNode dagArray = (ArrayNode) jsonNode;
-      if (dagArray.size() == ARRAY_JSON_NODE_SIZE) {
-        // Get all attributes of the object
-        final double vekt = dagArray.get(0).asDouble();
-        final double skritt = dagArray.get(1).asDouble();
-        final double treningstid = dagArray.get(2).asDouble();
-        final double protein = dagArray.get(3).asDouble();
-        final double karbo = dagArray.get(4).asDouble();
-        final double fett = dagArray.get(5).asDouble();
-        final String date_string = dagArray.get(6).asText();
-        final LocalDate date = LocalDate.parse(date_string);
-        // Create the Dag object
-        return new Dag(vekt, skritt, treningstid, protein, karbo, fett, date);
-      }
-    }
+    } 
     return null;
   }
 }

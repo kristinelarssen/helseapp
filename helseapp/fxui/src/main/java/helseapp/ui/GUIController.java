@@ -18,7 +18,6 @@ import javafx.scene.control.TextField;
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
   private DagPersistance dagPersistance = new DagPersistance();
- // private FileData fileData = new FileData(dagPersistance);
 
   // Definerer alle FXML-elementene
 
