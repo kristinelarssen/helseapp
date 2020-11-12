@@ -4,18 +4,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import helseapp.core.Dag;
+import helseapp.core.Dager;
+import helseapp.json.DagDeserializer;
 import java.beans.Transient;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.util.Iterator;
 import org.junit.jupiter.api.Test;
-import helseapp.core.Dag;
-import helseapp.core.Dager;
-import java.time.LocalDate;
 
 class DagPersistanceTest {
 
@@ -74,9 +83,25 @@ class DagPersistanceTest {
     assertEquals(date, dag.getDate());
   }
 
+  
   static void checkDag(Dag dag1, Dag dag2) {
     checkDag(dag1, dag2.getVekt(), dag2.getSkritt(), dag2.getTreningstid(), dag2.getProtein(), dag2.getKarbo(),
         dag2.getFett(), dag2.getDate());
+  }
+
+
+  @Test
+  void testReadExpectedException() {
+    assertThrows(RuntimeException.class, () -> {
+      DagPersistance dagPersistance = new DagPersistance();
+      String path = "test.json";
+      dagPersistance.read(path);
+    }); 
+    assertThrows(RuntimeException.class, () -> {
+      DagPersistance dagPersistance = new DagPersistance();
+      String path = null;
+      dagPersistance.read(path);
+    });
   }
 
 }

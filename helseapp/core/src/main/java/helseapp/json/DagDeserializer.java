@@ -13,7 +13,7 @@ import java.time.LocalDate;
 
 public class DagDeserializer extends JsonDeserializer<Dag> {
 
-  private static final int ARRAY_JSON_NODE_SIZE = 2;
+
 
   /**
    * Deserialize dag from json.
@@ -24,12 +24,16 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
    * @throws JsonProcessingException -JsonProcessingException
    * @return dag - Dag object
    */
+
   @Override
   public Dag deserialize(final JsonParser jsonParser, final DeserializationContext deserContext)
       throws IOException, JsonProcessingException {
     final JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
     return deserialize(jsonNode);
   }
+  
+
+
 
   /**
    * Deserialize dag from json.
@@ -38,6 +42,7 @@ public class DagDeserializer extends JsonDeserializer<Dag> {
    * @return dag - Dag object
    * @throws JsonProcessingException - JsonProcessingException
    */
+
   public Dag deserialize(final JsonNode jsonNode) throws JsonProcessingException {
     // If the json-node is a dag object
     if (jsonNode instanceof ObjectNode) {
