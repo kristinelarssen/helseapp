@@ -21,7 +21,7 @@ public class FileData {
    * @param savePath - String path to json-file
    * @param dager    - Dager oject
    */
-  void save(String savePath, Dager dager) {
+  public void save(String savePath, Dager dager) {
     if (savePath != null) {
       Path path = Paths.get(savePath);
       try (Writer writer = new FileWriter(path.toFile(), StandardCharsets.UTF_8)) {

@@ -42,10 +42,10 @@ public class GUITest extends ApplicationTest {
 
   @BeforeEach
   void setupItems() throws Exception {
-    controller.savePath = "../core/src/main/java/helseapp/json/dager.json";
+    controller.savePath = "../core/src/test/java/helseapp/json/dager.json";
     ApplicationTest.launch(GUI.class);
     vektField = controller.vektField; // lookup("#vektField").query();
-    skrittField = controller.skrittField;
+    skrittField = controller.skrittField; // lookup("#skrittField").query();
     treningsField = controller.treningField; // = lookup("#treningsField").query();
     proteinField = controller.proteinField; // lookup("#proteinField").query();
     karboField = controller.karboField; // lookup("#karboField").query();
@@ -93,7 +93,7 @@ public class GUITest extends ApplicationTest {
 
   @Test
   void testHenteData() {
-    controller.datoPicker.setValue(LocalDate.of(2020, Month.DECEMBER, 1));
+    controller.datoPicker.setValue(LocalDate.of(2020, 12, 1));
     controller.henteData();
     assertEquals(vektField.getText(), "50.0");
     assertEquals(skrittField.getText(), "5000");
@@ -101,5 +101,81 @@ public class GUITest extends ApplicationTest {
     assertEquals(proteinField.getText(), "200.0");
     assertEquals(karboField.getText(), "300.0");
     assertEquals(fettField.getText(), "50.0");
+    controller.datoPicker.setValue(LocalDate.of(2020, 11, 30));
+    controller.henteData();
+    assertEquals(vektField.getText(), "");
+    assertEquals(skrittField.getText(), "");
+    assertEquals(treningsField.getText(), "");
+    assertEquals(proteinField.getText(), "");
+    assertEquals(karboField.getText(), "");
+    assertEquals(fettField.getText(), "");
+  }
+
+  @Test
+  void testLagreData() {
+    vektField.setText("");
+    controller.lagreData();
+    helseapp.core.Dager dager = controller.fileData.read(controller.savePath);
+    Dag dag = dager.getDag(dager.getDagCount() - 1);
+    assertEquals(dag.getDate(), datoPicker.getValue());
+    assertEquals(dag.getVekt(), 0.0);
+    assertEquals(dag.getSkritt(), 15000.0);
+    assertEquals(dag.getTreningstid(), 30.0);
+    assertEquals(dag.getProtein(), 150.0);
+    assertEquals(dag.getKarbo(), 400.0);
+    assertEquals(dag.getFett(), 100.0);
+    dager.removeDag(dager.getDagCount() - 1);
+    controller.fileData.save(controller.savePath, dager);
+  }
+
+  @Test
+  void testPopulateGraphs() {
+  controller.populateGraphs(6, LocalDate.of(2020, 12, 1));
+  for (int i = 0; i < 5; i++) {
+    assertEquals(getxvalue(controller.vektChart, i), (i+1) + ".12");
+    assertEquals(getxvalue(controller.skrittChart, i), (i+1) + ".12");
+    assertEquals(getxvalue(controller.treningsChart, i), (i+1) + ".12");
+    assertEquals(getxvalue(controller.kaloriChart, i), (i+1) + ".12");
+  }
+  for (int i = 0; i < 5; i++) {
+    assertEquals(getyvalue(controller.vektChart, i), 50.0 + i*10);
+    assertEquals(getyvalue(controller.skrittChart, i), 5000.0 + i*1000);
+    assertEquals(getyvalue(controller.treningsChart, i), 10.0 + i*5);
+    assertEquals(getyvalue(controller.kaloriChart, i), 2450.0 - i*81);
+  }
+    assertEquals(getyvalue(controller.vektChart, 5), 0.0);
+    assertEquals(getyvalue(controller.skrittChart, 5), 0.0);
+    assertEquals(getyvalue(controller.treningsChart, 5), 0.0);
+    assertEquals(getyvalue(controller.kaloriChart, 5), 0.0);
+  }
+
+  @Test
+  void testVisGraf() {
+    controller.fraDato.setValue(LocalDate.of(2020, 12, 1));
+    controller.tilDato.setValue(LocalDate.of(2020, 12, 6));
+    controller.visGraf();
+    assertEquals(getxvalue(controller.vektChart, 0), "1.12");
+    assertEquals(getxvalue(controller.vektChart, 5), "6.12");
+    assertEquals(controller.vektChart.getData().get(0).getData().size(), 6);
+  }
+
+  @Test
+  void testMakeNumberField() {
+    Hjelpemetoder hjelpemetoder = new Hjelpemetoder();
+    vektField.setText("");
+    vektField.setText("1");
+    assertEquals(vektField.getText(), "1");
+    vektField.setText("");
+    vektField.setText("a");
+    System.out.println(vektField.getText());
+    assertEquals(vektField.getText(), "");
+  }
+
+  String getxvalue(javafx.scene.chart.LineChart<String, Number> chart, int day) {
+    return chart.getData().get(0).getData().get(day).getXValue();
+  }
+
+  double getyvalue(javafx.scene.chart.LineChart<String, Number> chart, int day) {
+    return chart.getData().get(0).getData().get(day).getYValue().doubleValue();
   }
 }
