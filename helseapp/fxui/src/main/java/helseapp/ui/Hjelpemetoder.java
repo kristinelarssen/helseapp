@@ -1,9 +1,12 @@
 package helseapp.ui;
 
+import java.text.DecimalFormat;
+import java.text.ParsePosition;
+import java.time.LocalDate;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
-
-import java.time.LocalDate;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 
 public class Hjelpemetoder {
   /**
@@ -13,7 +16,8 @@ public class Hjelpemetoder {
    * @param chart Kobler charten mot fxml chart som skal brukes for den spesifikke charten
    * @param chartName Navnet på grafen
    */
-  public static void leggDataIGraf(double[][] data, LineChart<String, Number> chart, String chartName) {
+  public static void settInnGrafdata(double[][] data, LineChart<String, Number> chart,
+                                     String chartName) {
     chart.getData().clear();
     XYChart.Series<String, Number> series = new XYChart.Series<>();
     series.setName(chartName);
@@ -35,5 +39,23 @@ public class Hjelpemetoder {
   static void insertDateInGraphs(LocalDate date, double[] data) {
     data[1] = (double) date.getDayOfMonth();
     data[2] = (double) date.getMonthValue();
+  }
+
+  static void makeNumberField(TextField field) {
+    DecimalFormat format = new DecimalFormat("#.0");
+    field.setTextFormatter(new TextFormatter<>(c -> {
+      if (c.getControlNewText().isEmpty()) {
+        return c;
+      }
+
+      ParsePosition parsePosition = new ParsePosition(0);
+      Object object = format.parse(c.getControlNewText(), parsePosition);
+
+      if (object == null || parsePosition.getIndex() < c.getControlNewText().length()) {
+        return null;
+      } else {
+        return c;
+      }
+    }));
   }
 }

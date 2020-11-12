@@ -1,12 +1,13 @@
 package helseapp.ui;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 import helseapp.json.DagPersistance;
 import helseapp.json.FileData;
 import java.net.URL;
 import java.time.LocalDate;
-import static java.time.temporal.ChronoUnit.DAYS;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javax.swing.JOptionPane;
 
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
@@ -78,7 +80,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void lagreData() {
-    LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    final LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
     Double[] tallData = new Double[6];
     String[] tekstData = new String[6];
     tekstData[0] = vektField.getText();
@@ -95,7 +97,8 @@ public class GUIController implements Initializable {
       }
     }
     // Lagring:
-    fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
+    fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2],
+        tallData[3], tallData[4], tallData[5], date), savePath);
   }
 
   /**
@@ -143,8 +146,8 @@ public class GUIController implements Initializable {
    */
   void setDataFields(Dag dag) {
     setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())),
-      Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()), Double.toString(dag.getKarbo()),
-      Double.toString(dag.getFett()));
+        Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()),
+        Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
   }
 
   /**
@@ -157,8 +160,8 @@ public class GUIController implements Initializable {
    * @param karbohydrater Legges inn i karbohydrater-feltet
    * @param fett          Legges inn i fett-feltet
    */
-  void setDataFields(String vekt, String skritt, String treningstid, String protein, String karbohydrater,
-      String fett) {
+  void setDataFields(String vekt, String skritt, String treningstid,
+                     String protein, String karbohydrater, String fett) {
     vektField.setText(vekt);
     skrittField.setText(skritt);
     treningField.setText(treningstid);
@@ -177,9 +180,9 @@ public class GUIController implements Initializable {
     double[][][] grafData = new double[4][antallDager][3];
     Dager dager = fileData.read(savePath);
     Dag dag = null;
-    for(int i = 0; i < antallDager; i++) {
-      for(int j = 0; j < dager.getDagCount(); j++) {
-        if(dager.getDag(j).getDate().equals(startDate.plusDays(i))) {
+    for (int i = 0; i < antallDager; i++) {
+      for (int j = 0; j < dager.getDagCount(); j++) {
+        if (dager.getDag(j).getDate().equals(startDate.plusDays(i))) {
           dag = dager.getDag(j);
         }
       }
@@ -191,22 +194,31 @@ public class GUIController implements Initializable {
       grafData[2][i][0] = dag == null ? 0.0 : dag.getKalorier();
       grafData[3][i][0] = dag == null ? 0.0 : dag.getTreningstid();
     }
-    Hjelpemetoder.leggDataIGraf(grafData[0], vektChart, "Vekt");
-    Hjelpemetoder.leggDataIGraf(grafData[1], skrittChart, "Skritt");
-    Hjelpemetoder.leggDataIGraf(grafData[2], kaloriChart, "Kalorier");
-    Hjelpemetoder.leggDataIGraf(grafData[3], treningsChart, "Treningstid");
+    Hjelpemetoder.settInnGrafdata(grafData[0], vektChart, "Vekt");
+    Hjelpemetoder.settInnGrafdata(grafData[1], skrittChart, "Skritt");
+    Hjelpemetoder.settInnGrafdata(grafData[2], kaloriChart, "Kalorier");
+    Hjelpemetoder.settInnGrafdata(grafData[3], treningsChart, "Treningstid");
   }
 
   /**
    * Initialiserer appen.
-   * Legger inn testdata i grafene Viser grafene i appen.
+   * Legger inn testdata i grafene
+   * Viser grafene i appen
    * Setter datoen i DatePicker til dagens dato
    *
-   * @param location
-   * @param resources
+   * @param location location
+   * @param resources resources
    */
   @Override
   public void initialize(URL location, ResourceBundle resources) {
-    Platform.runLater(() -> datoPicker.setValue(LocalDate.now()));
+    Hjelpemetoder.makeNumberField(vektField);
+    Hjelpemetoder.makeNumberField(skrittField);
+    Hjelpemetoder.makeNumberField(treningField);
+    Hjelpemetoder.makeNumberField(proteinField);
+    Hjelpemetoder.makeNumberField(karboField);
+    Hjelpemetoder.makeNumberField(fettField);
+    Platform.runLater(() -> {
+      datoPicker.setValue(LocalDate.now());
+    });
   }
 }
