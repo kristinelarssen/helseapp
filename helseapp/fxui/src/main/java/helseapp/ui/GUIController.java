@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
   private DagPersistance dagPersistance = new DagPersistance();
-  private FileData fileData = new FileData(dagPersistance);
+  FileData fileData = new FileData(dagPersistance);
 
   // Definerer alle FXML-elementene
 
@@ -129,8 +129,8 @@ public class GUIController implements Initializable {
   }
 
   /**
-   * Kalles når visGraf-knappen trykkes Viser graf med lagret data for intervallet.
-   * mellom startDato og sluttDato
+   * Kalles når visGraf-knappen trykkes.
+   * Viser graf med lagret data for intervallet mellom startDato og sluttDato
    */
   @FXML
   void visGraf() {
@@ -181,6 +181,7 @@ public class GUIController implements Initializable {
     Dager dager = fileData.read(savePath);
     Dag dag = null;
     for (int i = 0; i < antallDager; i++) {
+      dag = null;
       for (int j = 0; j < dager.getDagCount(); j++) {
         if (dager.getDag(j).getDate().equals(startDate.plusDays(i))) {
           dag = dager.getDag(j);
