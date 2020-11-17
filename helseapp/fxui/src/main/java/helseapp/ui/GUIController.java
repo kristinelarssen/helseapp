@@ -5,7 +5,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 import helseapp.json.DagPersistance;
-import helseapp.json.FileData;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
@@ -16,12 +15,10 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javax.swing.JOptionPane;
 
 public class GUIController implements Initializable {
   String savePath = "../core/src/main/java/helseapp/json/dager.json";
-  private DagPersistance dagPersistance = new DagPersistance();
-  FileData fileData = new FileData(dagPersistance);
+  DagPersistance dagPersistance = new DagPersistance();
 
   // Definerer alle FXML-elementene
 
@@ -97,7 +94,7 @@ public class GUIController implements Initializable {
       }
     }
     // Lagring:
-    fileData.saveDag(new Dag(tallData[0], tallData[1], tallData[2],
+    dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2],
         tallData[3], tallData[4], tallData[5], date), savePath);
   }
 
@@ -116,7 +113,7 @@ public class GUIController implements Initializable {
   @FXML
   void henteData() {
     LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
-    Dager dager = fileData.read(savePath);
+    Dager dager = dagPersistance.read(savePath);
     Dag dag = null;
     for (int i = 0; i < dager.getDagCount(); i++) {
       if (dager.getDag(i).getDate().equals(date)) {
@@ -160,7 +157,7 @@ public class GUIController implements Initializable {
    * @param karbohydrater Legges inn i karbohydrater-feltet
    * @param fett          Legges inn i fett-feltet
    */
-  void setDataFields(String vekt, String skritt, String treningstid,
+  private void setDataFields(String vekt, String skritt, String treningstid,
                      String protein, String karbohydrater, String fett) {
     vektField.setText(vekt);
     skrittField.setText(skritt);
@@ -178,7 +175,7 @@ public class GUIController implements Initializable {
    */
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
-    Dager dager = fileData.read(savePath);
+    Dager dager = dagPersistance.read(savePath);
     Dag dag = null;
     for (int i = 0; i < antallDager; i++) {
       dag = null;

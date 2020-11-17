@@ -104,7 +104,7 @@ public class Dag {
      * @return kalorier - antall kalorier basert på inntak
      */
     public double getKalorier() {
-        return (9*getFett()+4*(getKarbo()+getProtein()));
+        return (9 * getFett() + 4 * (getKarbo() + getProtein()));
     }
 
 	/**

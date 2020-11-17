@@ -1,6 +1,7 @@
 package helseapp.ui;
 
 import helseapp.core.Dag;
+import helseapp.json.DagPersistance;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,9 +9,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -115,7 +113,7 @@ public class GUITest extends ApplicationTest {
   void testLagreData() {
     vektField.setText("");
     controller.lagreData();
-    helseapp.core.Dager dager = controller.fileData.read(controller.savePath);
+    helseapp.core.Dager dager = controller.dagPersistance.read(controller.savePath);
     Dag dag = dager.getDag(dager.getDagCount() - 1);
     assertEquals(dag.getDate(), datoPicker.getValue());
     assertEquals(dag.getVekt(), 0.0);
@@ -125,7 +123,7 @@ public class GUITest extends ApplicationTest {
     assertEquals(dag.getKarbo(), 400.0);
     assertEquals(dag.getFett(), 100.0);
     dager.removeDag(dager.getDagCount() - 1);
-    controller.fileData.save(controller.savePath, dager);
+    controller.dagPersistance.save(controller.savePath, dager);
   }
 
   @Test
