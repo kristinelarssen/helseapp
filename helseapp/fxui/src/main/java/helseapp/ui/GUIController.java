@@ -95,6 +95,7 @@ public class GUIController implements Initializable {
         tallData[i] = 0.0;
       }
     }
+    // persistance.postDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date))
     // Lagring:
     dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2],
         tallData[3], tallData[4], tallData[5], date), savePath);

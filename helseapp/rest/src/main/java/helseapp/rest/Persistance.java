@@ -114,6 +114,21 @@ public class Persistance{
         }
         return null;
     }
+
+    // Dette virker ulovlig:
+    public static void postDag(Dag dag){
+        String urlStringDager = "http://localhost:8080/dager";
+        try {
+            URL url = new URL(urlStringDager);
+            connection = (HttpURLConnection) url.openConnection();
+            Controller c = new Controller();
+            c.addDag(dag);
+        }catch (MalformedURLException e){
+            System.out.println("MalformedURLException");
+        }catch (IOException e){
+            System.out.println("IOException2");
+        }
+    }
     
 
 
