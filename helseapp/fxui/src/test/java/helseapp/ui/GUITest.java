@@ -109,6 +109,7 @@ public class GUITest extends ApplicationTest {
     assertEquals(fettField.getText(), "");
   }
 
+  // Hva gjør egt denne testen i GUI? Den tester dagPersistance.
   @Test
   void testLagreData() {
     vektField.setText("");

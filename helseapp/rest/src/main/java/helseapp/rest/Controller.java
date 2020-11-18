@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import helseapp.core.Dag;
@@ -28,14 +27,14 @@ public class Controller {
     private DagPersistance dagPersistance = new DagPersistance();
 
     @GetMapping("/dager")
-    public ResponseEntity<List<Dag>> responseDager() {
+    public ResponseEntity<List<Dag>> ResponseDager() {
         Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
         return new ResponseEntity<List<Dag>>(dagList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/dager/{dato}", method = RequestMethod.GET)
-    public ResponseEntity<Dag> responseDag(@PathVariable("dato") String dato) {
+    public ResponseEntity<Dag> ResponseDag(@PathVariable("dato") String dato) {
         LocalDate d = LocalDate.parse(dato);
         Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
@@ -47,15 +46,17 @@ public class Controller {
         return null;
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/dager")
-    public String addDag(@RequestBody Dag dag){
+    @PostMapping(value = "/dager", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Dag> addDag(@RequestBody Dag dag){
         // Save object to file. New element for new date and update for existing date.
         dagPersistance.saveDag(dag, filePath);
-        return dag.toString();
+        return new ResponseEntity<Dag>(dag, HttpStatus.OK);
     }
 
 
+    public static void main(String[] args) {
 
+    }
 
 
 
