@@ -138,4 +138,8 @@ public class Dager implements Iterable<Dag> {
     return dager.remove(num);
   }
 
+  public List<Dag> getDager(){
+      return this.dager;
+  }
+
 }

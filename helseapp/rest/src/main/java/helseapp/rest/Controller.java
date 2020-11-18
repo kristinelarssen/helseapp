@@ -26,19 +26,18 @@ public class Controller {
     // File objects
     String filePath = "src/main/java/IT1901/gr2059/demo/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
-    private FileData fileData = new FileData(dagPersistance);
 
     @GetMapping("/dager")
-    public ResponseEntity<List<Dag>> ResponseDager() {
-        Dager dager = fileData.read(filePath);
+    public ResponseEntity<List<Dag>> responseDager() {
+        Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
         return new ResponseEntity<List<Dag>>(dagList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/dager/{dato}", method = RequestMethod.GET)
-    public ResponseEntity<Dag> ResponseDag(@PathVariable("dato") String dato) {
+    public ResponseEntity<Dag> responseDag(@PathVariable("dato") String dato) {
         LocalDate d = LocalDate.parse(dato);
-        Dager dager = fileData.read(filePath);
+        Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
         for (Dag dag : dagList){
             if (dag.getDate().equals(d)){
@@ -51,7 +50,7 @@ public class Controller {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/dager")
     public String addDag(@RequestBody Dag dag){
         // Save object to file. New element for new date and update for existing date.
-        fileData.saveDag(dag, filePath);
+        dagPersistance.saveDag(dag, filePath);
         return dag.toString();
     }
 
