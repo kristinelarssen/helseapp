@@ -7,8 +7,9 @@ Skal bli en app hvor man kan lagre og følge med på helsedata over tid.
 #Hvordan kjøre appen:
 1. I terminal 1: mvn clean install
 2. I terminal 1: mvn spring-boot:run -f rest/pom.xml
-3. I terminal 2: mvn clean install 
-4. I terminal 2: mvn javafx:run -f fxui/pom.xml
+3. I terminal 2: cd helseapp
+4. I terminal 2: mvn clean install 
+5. I terminal 2: mvn javafx:run -f fxui/pom.xml
 
 #Struktur
 
