@@ -1,6 +1,7 @@
 package helseapp.core;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Dag {
 
@@ -118,5 +119,35 @@ public class Dag {
 
   public LocalDate getDate() {
     return date;
+  }
+
+  /**
+   * Definerer at to dager er like hvis de har den samme datoen.
+   *
+   * @param o Objekt som sammenlignes
+   * @return Returnerer true hvis dagene er like
+   */
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null) {
+      return false;
+    }
+    if (o.getClass() != getClass()) {
+      return false;
+    }
+    Dag dag = (Dag) o;
+    return this.getDate() == dag.getDate();
+  }
+
+  /**
+   * Baserer hash-funksjonen på datoen til dagen, så den stemmer med equals-metoden
+   * @return Returnerer en hash
+   */
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.getDate());
   }
 }
