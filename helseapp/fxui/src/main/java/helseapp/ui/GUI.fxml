@@ -94,6 +94,12 @@
                            GridPane.rowIndex="5"/>
                 <TextField fx:id="fettField" promptText="gram" GridPane.ColumnIndex="1"
                            GridPane.rowIndex="6"/>
+                <Button fx:id="lagreButton" mnemonicParsing="false" GridPane.ColumnIndex="0" 
+                        GridPane.rowIndex="7" onAction="#lagreData"
+                        text="Lagre informasjon"/>
+                <Button fx:id="henteButton" mnemonicParsing="false" GridPane.ColumnIndex="1" 
+                        GridPane.rowIndex="7" onAction="#henteData"
+                        text="Hent informasjon"/>
                 <columnConstraints>
                   <ColumnConstraints />
                   <ColumnConstraints />
@@ -115,10 +121,12 @@
             </center>
             <bottom>
               <HBox>
-                <Button fx:id="lagreButton" mnemonicParsing="false" onAction="#lagreData"
-                        text="Lagre informasjon"/>
-                <Button fx:id="henteButton" mnemonicParsing="false" onAction="#henteData"
-                        text="Hent informasjon"/>
+                <Button fx:id="prevButton" mnemonicParsing="false" onAction="#forrigeDag" 
+                        text="prev"/>
+                <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnerTilDag" 
+                        text="Returner til dagen i dag"/>
+                <Button fx:id="nextButton" mnemonicParsing="false" onAction="#nesteDag" 
+                        text="next"/>
               </HBox>
             </bottom>
           </BorderPane>
