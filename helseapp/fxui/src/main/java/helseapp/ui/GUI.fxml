@@ -23,8 +23,8 @@
   <VBox prefHeight="500" prefWidth="600">
     <TabPane prefHeight="500" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
       <Tab text="Registrer informasjon">
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-          <BorderPane style="-fx-background-color: CadetBlue;">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="500.0" prefWidth="600.0">
+          <BorderPane style="-fx-background-color: #779CAB;" prefHeight="480.0" prefWidth="600.0">
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
@@ -41,7 +41,7 @@
               </VBox>
             </top>
             <center>
-              <GridPane hgap="10" vgap="10">
+              <GridPane hgap="10" vgap="10" alignment="CENTER">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
@@ -120,7 +120,10 @@
               </GridPane>
             </center>
             <bottom>
-              <HBox>
+              <HBox alignment="CENTER">
+                <padding>
+                  <Insets bottom="30"/>
+                </padding>
                 <Button fx:id="prevButton" mnemonicParsing="false" onAction="#forrigeDag" 
                         text="prev"/>
                 <Button fx:id="returnButton" mnemonicParsing="false" onAction="#returnerTilDag" 

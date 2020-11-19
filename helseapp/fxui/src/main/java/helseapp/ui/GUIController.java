@@ -4,7 +4,6 @@ import static java.time.temporal.ChronoUnit.DAYS;
 
 import helseapp.core.Dag;
 import helseapp.core.Dager;
-import helseapp.json.DagPersistance;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
