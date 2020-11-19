@@ -16,6 +16,11 @@ import helseapp.json.DagPersistance;
 @RequestMapping
 public class Controller {
 
+    /**
+     * Method for checking that the localhost:8080 is running. Prints hello.
+     * 
+     * @return "hello" - String 
+     */
     @GetMapping("/")
     public String home() {
         return "hello";
@@ -25,6 +30,11 @@ public class Controller {
     String filePath = "../core/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
 
+    /**
+     * Http GET request for Dager.
+     * 
+     * @return new ResponseEntity<List<Dag>>(dagList, HttpStatus.OK) - String with json-elements
+     */
     @GetMapping("/dager")
     public ResponseEntity<List<Dag>> responseDager() {
         Dager dager = dagPersistance.read(filePath);
@@ -32,6 +42,12 @@ public class Controller {
         return new ResponseEntity<List<Dag>>(dagList, HttpStatus.OK);
     }
 
+    /**
+     * Http GET request for a date, using /dager/{dato}.
+     * 
+     * @param dato - @PathVariable("dato") String
+     * @return new ResponseEntity<Dag>(dag, HttpStatus.OK) - String with a single json-element
+     */
     @RequestMapping(value = "/dager/{dato}", method = RequestMethod.GET)
     public ResponseEntity<Dag> responseDag(@PathVariable("dato") String dato) {
         LocalDate d = LocalDate.parse(dato);
@@ -45,6 +61,12 @@ public class Controller {
         return null;
     }
 
+    /**
+     * Http POST request for Dager, using /dager.
+     * 
+     * @param dag - @RequestBody Dag
+     * @return new ResponseEntity<Dag>(dag, HttpStatus.OK) - String with json-element
+     */
     @PostMapping(value = "/dager", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Dag> addDag(@RequestBody Dag dag) {
         // Save object to file. New element for new date and update for existing date.
