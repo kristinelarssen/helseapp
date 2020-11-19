@@ -12,6 +12,17 @@ og fettinntak.
 4. 5: Som bruker ønsker jeg å se en oversikt over alle dataene mine for en selvdefinert tidsperiode slik at jeg kan ha oversikt over utviklingen min
 5. Som bruker ønsker jeg å kunne klikke meg fram og tilbake mellom dager samt å returnere til datoen i dag
 
+## Mocukup
+En mockup av hvordan vi så for oss at hovedsiden i appen skulle se ut fra starten. 
+![description](mockup_helseapp.jpg)
+
+## Funksjonalitet
+
+
+## Pakkediagram
+
+
+## Klassediagram
 
 UML-diagram for objektene i prosjektet:
 ![picture](img/Helseapp_UML.png)
@@ -24,3 +35,7 @@ UML-diagram for objektene i ui-mappen:
 
 UML-diagram for objektene i json-mappen:
 ![picture](img/JSON_UML.png)
+
+
+
+## Sekvensdiagram
