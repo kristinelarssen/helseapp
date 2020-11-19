@@ -2,13 +2,15 @@
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.idi.ntnu.no/#https://gitlab.stud.idi.ntnu.no/it1901/groups-2020/gr2059/gr2059)
 
 #Helseapp
-Hvordan kjøre appen:
+Skal bli en app hvor man kan lagre og følge med på helsedata over tid.
+
+#Hvordan kjøre appen:
 1. I terminal 1: mvn clean install
 2. I terminal 1: mvn spring-boot:run -f rest/pom.xml
 3. I terminal 2: mvn clean install 
 4. I terminal 2: mvn javafx:run -f fxui/pom.xml
 
-Struktur :
+#Struktur
 Prosjektet består av 3 moduler, fxui, core og rest. Dette er gjort for å separere
 front-end(fxui modulen) fra back-end(core modulen). De to lagene knyttes sammen 
 gjennom et rest API(rest modulen). Dette er gjort slik at f.eks. hvis metode for
