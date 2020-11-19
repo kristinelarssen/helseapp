@@ -1,8 +1,11 @@
 package helseapp.ui;
 
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.time.LocalDate;
+import java.util.Locale;
+
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
@@ -42,7 +45,9 @@ public class Hjelpemetoder {
   }
 
   static void makeNumberField(TextField field) {
-    DecimalFormat format = new DecimalFormat("#.0");
+    NumberFormat numFormat = NumberFormat.getNumberInstance(Locale.US);
+    DecimalFormat format = (DecimalFormat) numFormat;
+    format.applyPattern("#.0");
     field.setTextFormatter(new TextFormatter<>(c -> {
       if (c.getControlNewText().isEmpty()) {
         return c;

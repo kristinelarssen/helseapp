@@ -17,8 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class GUIController implements Initializable {
-  String savePath = "../core/src/main/java/helseapp/json/dager.json";
-  DagPersistance dagPersistance = new DagPersistance();
+  Persistance persistance = new Persistance();
 
   // Definerer alle FXML-elementene
 
@@ -93,9 +92,7 @@ public class GUIController implements Initializable {
         tallData[i] = 0.0;
       }
     }
-    // Lagring:
-    dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2],
-        tallData[3], tallData[4], tallData[5], date), savePath);
+    persistance.addDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date));
   }
 
   /**
@@ -113,7 +110,7 @@ public class GUIController implements Initializable {
   @FXML
   void henteData() {
     LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
-    Dager dager = dagPersistance.read(savePath);
+    Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;
     for (int i = 0; i < dager.getDagCount(); i++) {
       if (dager.getDag(i).getDate().equals(date)) {
@@ -175,7 +172,7 @@ public class GUIController implements Initializable {
    */
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
-    Dager dager = dagPersistance.read(savePath);
+    Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;
     for (int i = 0; i < antallDager; i++) {
       dag = null;

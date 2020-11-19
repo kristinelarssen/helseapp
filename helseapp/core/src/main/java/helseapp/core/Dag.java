@@ -14,6 +14,8 @@ public class Dag {
   private double fett;
   private LocalDate date;
 
+  public Dag() {}
+
   /**
    * klasse konstruktør.
    *
@@ -103,6 +105,7 @@ public class Dag {
      *
      * @return kalorier - antall kalorier basert på inntak
      */
+
     public double getKalorier() {
         return (9 * getFett() + 4 * (getKarbo() + getProtein()));
     }

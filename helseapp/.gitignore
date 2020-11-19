@@ -1,7 +1,7 @@
-/target
+*/target
 core/target/
 fxui/target/
-/.settings
+*/.settings
 /bin
 .classpath
 .project
