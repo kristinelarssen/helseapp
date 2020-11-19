@@ -31,11 +31,6 @@ class DagPersistanceTest {
   private DagPersistance dagPersistance = new DagPersistance();
   String path = "../core/src/test/java/helseapp/json/dager2.json";
 
-  /*
-   * Terster serializer og deserializer Lager Dag objekter som legges til i et
-   * Dager-objekt. Skriver Dager, og leser av til nytt Dager2-objekt. Itererer
-   * gjennom Dager2-objektet og sjekker om det har samme dato som Dager-objektet.
-   */
 
   @Test
   void testSerializersDeserializers() {
