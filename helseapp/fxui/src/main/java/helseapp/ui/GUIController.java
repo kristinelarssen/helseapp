@@ -86,7 +86,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void lagreData() {
-    final LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    final LocalDate date = datoPicker.getValue();
     Double[] tallData = new Double[6];
     String[] tekstData = new String[6];
     tekstData[0] = vektField.getText();
@@ -113,6 +113,18 @@ public class GUIController implements Initializable {
   @FXML
   void dateChangeAction() {
     setDataFields("", "", "", "", "", "");
+    if (date.isEqual(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(false);
+    }
+    else if (date.isAfter(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(true);
+    }
+    else {
+      nextButton.setDisable(false);
+      prevButton.setDisable(false); 
+    }
   }
 
   /**
@@ -122,7 +134,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void henteData() {
-    LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    LocalDate date = datoPicker.getValue();
     henteDag(date);
     if (date.isEqual(LocalDate.now())) {
       nextButton.setDisable(true);
@@ -225,7 +237,6 @@ public class GUIController implements Initializable {
               dag = dager.getDag(i);
           }
       }
-      // datoPicker.setValue(date);
       if (dag != null) {
           setDataFields(dag);
       }
@@ -240,7 +251,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void nesteDag() {
-    LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    LocalDate date = datoPicker.getValue();
     LocalDate changeDate = date.plusDays(1);
     datoPicker.setValue(changeDate);
     henteDag(changeDate);
@@ -255,7 +266,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void forrigeDag() {
-    LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    LocalDate date = datoPicker.getValue();
     LocalDate changeDate = date.minusDays(1);
     datoPicker.setValue(changeDate);
     henteDag(changeDate);
