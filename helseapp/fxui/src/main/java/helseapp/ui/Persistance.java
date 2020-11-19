@@ -8,27 +8,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import helseapp.core.Dag;
 import helseapp.core.Dager;
 
 
-public class Persistance{
+class Persistance{
 
     private HttpURLConnection connection;
 
 
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
-    private static ObjectMapper getDefaultObjectMapper(){
-        ObjectMapper defaultObjectMapper = new ObjectMapper();
-        return defaultObjectMapper;
+    static ObjectMapper getDefaultObjectMapper(){
+        return new ObjectMapper();
     }
 
 
-    public static Dager parseJsonToDager(String responseBody) throws  JSONException {
+    static Dager parseJsonToDager(String responseBody) throws  JSONException {
         JSONArray albums = new JSONArray(responseBody);
         Dager dager = new Dager();
         for(int i = 0; i<albums.length(); i++) {
@@ -46,7 +44,7 @@ public class Persistance{
         return dager;
     }
 
-    public static Dag parseJsonToDag(String responseBody) throws JsonProcessingException {
+    static Dag parseJsonToDag(String responseBody) throws JsonProcessingException {
         JsonNode node = objectMapper.readTree(responseBody);
         LocalDate dato = LocalDate.parse(node.get("date").asText());
         double vekt = node.get("vekt").asDouble();
@@ -55,14 +53,13 @@ public class Persistance{
         double karbo =node.get("karbo").asDouble();
         double treningstid = node.get("treningstid").asDouble();
         double skritt = node.get("skritt").asDouble();
-        Dag dag = new Dag(vekt, skritt, treningstid, protein, karbo, fett, dato);
-        return dag;
+        return new Dag(vekt, skritt, treningstid, protein, karbo, fett, dato);
     }
 
-    public Object load(String urlString){
+    Object load(String urlString){
         BufferedReader reader;
         String line;
-        StringBuffer responseContent = new StringBuffer();
+        StringBuilder responseContent = new StringBuilder();
         try {
             URL url = new URL(urlString);
             connection = (HttpURLConnection) url.openConnection();
@@ -89,23 +86,19 @@ public class Persistance{
             }
             String responseBody = responseContent.toString();
             if(urlString.equals("http://localhost:8080/dager")){
-                Dager dager = parseJsonToDager(responseBody);
-                return dager;
+                return parseJsonToDager(responseBody);
             }else {
-                Dag dag = parseJsonToDag(responseBody);
-                return dag;
+                return parseJsonToDag(responseBody);
             }
-        }catch (MalformedURLException e){
+        } catch (IOException | JSONException e){
             e.printStackTrace();
-        }catch (IOException | JSONException e){
-            e.printStackTrace();
-        }finally {
+        } finally {
             connection.disconnect();
         }
         return null;
     }
 
-    public static String createJsonDagString(Dag dag) {
+    static String createJsonDagString(Dag dag) {
         try{
             JSONObject obj = new JSONObject();
             obj.put("vekt", dag.getVekt());
@@ -116,14 +109,13 @@ public class Persistance{
             obj.put("fett", dag.getFett());
             obj.put("date", dag.getDate());
 
-            String jsonDagString = obj.toString();
-            return jsonDagString;
+            return obj.toString();
         }catch(JSONException e){
             return null;
         }
     }
 
-    public boolean addDag(final Dag dag) {
+    void addDag(final Dag dag) {
         try {
             URL url = new URL ("http://localhost:8080/dager");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -135,6 +127,7 @@ public class Persistance{
             String jsonInputString = createJsonDagString(dag);
 
             try(OutputStream os = con.getOutputStream()) {
+                assert jsonInputString != null;
                 byte[] input = jsonInputString.getBytes("utf-8");
                 os.write(input, 0, input.length);
             }
@@ -148,35 +141,8 @@ public class Persistance{
                 System.out.println(response.toString());
             }
             con.disconnect();
-            return true;
-        }catch (MalformedURLException e){
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (IOException e){
             e.printStackTrace();
         }
-        return false;
     }
-
-    /*
-    public static void main(String[] args) {
-        // Tester post dag:
-        Dag dag = new Dag(1, 1, 1, 1, 1, 1, LocalDate.parse("9758-01-01"));
-        boolean bool = addDag(dag);
-        System.out.println(bool);
-
-        // Tester get dager:
-        String urlStringDager = "http://localhost:8080/dager";
-        Object dager = load(urlStringDager);
-        Dager dgr = (Dager) dager;
-        System.out.println("dager: " + dgr.getDag(0).getDate());
-
-        // Tester get dag:
-        String urlString = "http://localhost:8080/dager/2030-11-15";
-        Object d1 = load(urlString);
-        Dag d = (Dag) dag;
-        System.out.println("Dag: " + d.getDate());
-
-    }
-    */
-    
 }

@@ -1,7 +1,6 @@
 package helseapp.ui;
 
 import helseapp.core.Dag;
-import helseapp.json.DagPersistance;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
