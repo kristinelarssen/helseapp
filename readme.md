@@ -11,6 +11,7 @@ Skal bli en app hvor man kan lagre og følge med på helsedata over tid.
 4. I terminal 2: mvn javafx:run -f fxui/pom.xml
 
 #Struktur
+
 Prosjektet består av 3 moduler, fxui, core og rest. Dette er gjort for å separere
 front-end(fxui modulen) fra back-end(core modulen). De to lagene knyttes sammen 
 gjennom et rest API(rest modulen). Dette er gjort slik at f.eks. hvis metode for
