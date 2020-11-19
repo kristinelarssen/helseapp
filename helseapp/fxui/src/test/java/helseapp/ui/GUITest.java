@@ -5,6 +5,7 @@ import helseapp.json.DagPersistance;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -13,6 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 
+import java.beans.Transient;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -22,12 +24,14 @@ public class GUITest extends ApplicationTest {
   private GUIController controller;
   private TextField vektField;
   private TextField skrittField;
-  private TextField treningsField;
+  private TextField treningField;
   private TextField proteinField;
   private TextField karboField;
   private TextField fettField;
   private DatePicker datoPicker;
   private TextField[] textFields = new TextField[6];
+  private Button prevButton;
+  private Button nextButton;
 
   @Override
   public void start(final Stage stage) throws Exception {
@@ -44,21 +48,23 @@ public class GUITest extends ApplicationTest {
     ApplicationTest.launch(GUI.class);
     vektField = controller.vektField; // lookup("#vektField").query();
     skrittField = controller.skrittField; // lookup("#skrittField").query();
-    treningsField = controller.treningField; // = lookup("#treningsField").query();
+    treningField = controller.treningField; // = lookup("#treningField").query();
     proteinField = controller.proteinField; // lookup("#proteinField").query();
     karboField = controller.karboField; // lookup("#karboField").query();
     fettField = controller.fettField; // lookup("#karboField").query();
     datoPicker = controller.datoPicker; // lookup("#datoPicker").query();
+    prevButton = controller.prevButton; // lookup("#prevButton").query();
+    nextButton = controller.nextButton; // lookup("#nextButton").query();
     textFields[0] = vektField;
     textFields[1] = skrittField;
-    textFields[2] = treningsField;
+    textFields[2] = treningField;
     textFields[3] = proteinField;
     textFields[4] = karboField;
     textFields[5] = fettField;
     datoPicker.setValue(LocalDate.of(2020, Month.DECEMBER, 24));
     vektField.setText("80");
     skrittField.setText("15000");
-    treningsField.setText("30");
+    treningField.setText("30");
     proteinField.setText("150");
     karboField.setText("400");
     fettField.setText("100");
@@ -83,7 +89,7 @@ public class GUITest extends ApplicationTest {
     controller.setDataFields(dag);
     assertEquals(vektField.getText(), "70.0");
     assertEquals(skrittField.getText(), "20000");
-    assertEquals(treningsField.getText(), "45.0");
+    assertEquals(treningField.getText(), "45.0");
     assertEquals(proteinField.getText(), "200.0");
     assertEquals(karboField.getText(), "200.0");
     assertEquals(fettField.getText(), "100.0");
@@ -95,7 +101,7 @@ public class GUITest extends ApplicationTest {
     controller.henteData();
     assertEquals(vektField.getText(), "50.0");
     assertEquals(skrittField.getText(), "5000");
-    assertEquals(treningsField.getText(), "10.0");
+    assertEquals(treningField.getText(), "10.0");
     assertEquals(proteinField.getText(), "200.0");
     assertEquals(karboField.getText(), "300.0");
     assertEquals(fettField.getText(), "50.0");
@@ -103,10 +109,70 @@ public class GUITest extends ApplicationTest {
     controller.henteData();
     assertEquals(vektField.getText(), "");
     assertEquals(skrittField.getText(), "");
-    assertEquals(treningsField.getText(), "");
+    assertEquals(treningField.getText(), "");
     assertEquals(proteinField.getText(), "");
     assertEquals(karboField.getText(), "");
     assertEquals(fettField.getText(), "");
+    assertTrue(nextButton.isEnabled());
+    assertTrue(prevButton.isEnabled());
+    controller.datoPicker.setValue(LocalDate.now());
+    controller.henteData();
+    assertTrue(nextButton.isEnabled());
+    assestFalse(prevButton.isEnabled());
+    controller.datoPicker.setValue(LocalDate.of(2020, 11, 1));
+    controller.henteData();
+    assertFalse(nextButton.isEnabled());
+    assertFalse(prevButton.isEnabled());
+  }
+
+  @Test
+  void testNesteDag() {
+    controller.datoPicker.setValue(LocalDate.of(2020, 11, 30));
+    controller.nesteDag();
+    assertEquals(vektField.getText(), "50.0");
+    assertEquals(skrittField.getText(), "5000");
+    assertEquals(treningField.getText(), "10.0");
+    assertEquals(proteinField.getText(), "200.0");
+    assertEquals(karboField.getText(), "300.0");
+    assertEquals(fettField.getText(), "50.0");
+    assertTrue(nextButton.isEnabled());
+    LocalDate date = LocalDate.now();
+    LocalDate changeDate = date.minusDays(1);
+    controller.datoPicker.setValue(changeDate);
+    controller.nesteDag();
+    assertFalse(nextButton.isEnabled());
+  }
+
+  @Test
+  void testForrigeDag() {
+    controller.datoPicker.setValue(LocalDate.of(2020, 12, 1));
+    controller.forrigeDag();
+    assertEquals(vektField.getText(), "");
+    assertEquals(skrittField.getText(), "");
+    assertEquals(treningField.getText(), "");
+    assertEquals(proteinField.getText(), "");
+    assertEquals(karboField.getText(), "");
+    assertEquals(fettField.getText(), "");
+  }
+
+  @Test
+  void testReturnerTilDag() {
+    controller.datoPicker.setValue(LocalDate.now());
+    controller.vektField.setText("80");
+    controller.skrittField.setText("8000");
+    controller.treningField.setText("30");
+    controller.proteinField.setText("150");
+    controller.karboField.setText("400");
+    controller.fettField.setText("100");
+    controller.lagreData();
+    controller.datoPicker.setValue(LocalDate.now());
+    controller.returnerTilDag();
+    assertEquals(vektField.getText(), "80.0");
+    assertEquals(skrittField.getText(), "8000");
+    assertEquals(treningField.getText(), "30.0");
+    assertEquals(proteinField.getText(), "150.0");
+    assertEquals(karboField.getText(), "400.0");
+    assertEquals(fettField.getText(), "100.0");
   }
 
   @Test
