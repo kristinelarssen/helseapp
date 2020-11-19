@@ -17,10 +17,7 @@ class DagerTest {
     dager = new Dager();
   }
 
-  /*
-  * Tester addDager() i Dager.
-  * Sjekker om et Dag-objekt blir lagt til i Dager sin dager-liste og om feltene er de samme
-  */
+
   @Test
   void testAddDag() {
     LocalDate now = LocalDate.now();
@@ -38,9 +35,7 @@ class DagerTest {
     assertEquals(dag.getKalorier(), addedDag.getKalorier());
     }
 
-  /*
-  * Hjelpemetode.
-  */
+
   private void checkIterator(final Iterator<Dag> it, final Dag... dager) {
     int i = 0;
     while (it.hasNext()) {
@@ -51,10 +46,7 @@ class DagerTest {
     assertEquals(i, dager.length);
   }
 
-  /*
-   * Terster iterator() i Dager Sjekker om dager blir lagt til og fjernet fra et
-   * Dager-objekt sin dager liste
-   */
+
   @Test
   void testIterator_addingAndRemovingDag() {
     checkIterator(dager.iterator());
@@ -78,10 +70,7 @@ class DagerTest {
     checkIterator(dager.iterator());
   }
 
-  /*
-   * Tester getDag() og setDag() Sjekker om setDag() erstatter et dag-objekt i
-   * dager-lista på plass 0
-   */
+
   @Test
   void getSetDagTest() {
     LocalDate now = LocalDate.now();
