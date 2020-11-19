@@ -35,6 +35,10 @@ Oversikt over de ulike modulene og rammeverk vi benytter oss av.
 <br/>
 
 ## 5. Klassediagram
+Under finner du klassediagram for de ulike modulene. 
+Disse finner du også i readme på løvnivå i de ulike modulene.  
+
+<br/>
 
 #### 5.1 Hele prosjektet:
 ![picture](img/klassediagram.png)
