@@ -1,6 +1,5 @@
 package helseapp.rest;
 
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ public class Controller {
     }
 
     // File objects
-    String filePath = "src/main/java/IT1901/gr2059/demo/dager.json";
+    String filePath = "../core/src/main/java/helseapp/json/dager.json";
     private DagPersistance dagPersistance = new DagPersistance();
 
     @GetMapping("/dager")

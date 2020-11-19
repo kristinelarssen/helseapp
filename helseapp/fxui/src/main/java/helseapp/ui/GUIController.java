@@ -98,7 +98,7 @@ public class GUIController implements Initializable {
     
     persistance.addDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date));
     // Delete linja under om restAPI fungerer 
-    //dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
+    // dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
   }
 
   /**
@@ -181,7 +181,7 @@ public class GUIController implements Initializable {
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
     // Delete linja under om restAPI fungerer 
-    //Dager dager = dagPersistance.read(this.savePath);
+    // Dager dager = dagPersistance.read(this.savePath);
     Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;
     for (int i = 0; i < antallDager; i++) {
