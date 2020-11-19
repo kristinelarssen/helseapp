@@ -1,6 +1,5 @@
 package helseapp.ui;
 
-/*
 import helseapp.core.Dag;
 import helseapp.json.DagPersistance;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +17,8 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
-*/
 
-// legg til extends ApplicationTest
-public class GUITest {
-    /*
+public class GUITest extends ApplicationTest{
   private GUIController controller;
   private TextField vektField;
   private TextField skrittField;
@@ -42,10 +38,8 @@ public class GUITest {
     stage.show();
   }
 
-  
   @BeforeEach
   void setupItems() throws Exception {
-    controller.savePath = "../core/src/test/java/helseapp/json/dager.json";
     ApplicationTest.launch(GUI.class);
     vektField = controller.vektField; // lookup("#vektField").query();
     skrittField = controller.skrittField; // lookup("#skrittField").query();
@@ -60,16 +54,14 @@ public class GUITest {
     textFields[3] = proteinField;
     textFields[4] = karboField;
     textFields[5] = fettField;
-    datoPicker.setValue(LocalDate.of(2020, Month.DECEMBER, 24));
-    vektField.setText("80");
-    skrittField.setText("15000");
-    treningsField.setText("30");
-    proteinField.setText("150");
-    karboField.setText("400");
-    fettField.setText("100");
+    datoPicker.setValue(LocalDate.of(1970, Month.JANUARY, 2));
+    vektField.setText("16");
+    skrittField.setText("15");
+    treningsField.setText("14");
+    proteinField.setText("13");
+    karboField.setText("12");
+    fettField.setText("11");
   }
-  
-  
 
   @Test
   void testController_initial() {
@@ -95,18 +87,18 @@ public class GUITest {
     assertEquals(karboField.getText(), "200.0");
     assertEquals(fettField.getText(), "100.0");
   }
-  
+
   @Test
   void testHenteData() {
-    controller.datoPicker.setValue(LocalDate.of(2020, 12, 1));
+    controller.datoPicker.setValue(LocalDate.of(1970, 1, 1));
     controller.henteData();
-    assertEquals(vektField.getText(), "50.0");
-    assertEquals(skrittField.getText(), "5000");
-    assertEquals(treningsField.getText(), "10.0");
-    assertEquals(proteinField.getText(), "200.0");
-    assertEquals(karboField.getText(), "300.0");
-    assertEquals(fettField.getText(), "50.0");
-    controller.datoPicker.setValue(LocalDate.of(2020, 11, 30));
+    assertEquals(vektField.getText(), "1.0");
+    assertEquals(skrittField.getText(), "2");
+    assertEquals(treningsField.getText(), "3.0");
+    assertEquals(proteinField.getText(), "4.0");
+    assertEquals(karboField.getText(), "5.0");
+    assertEquals(fettField.getText(), "6.0");
+    controller.datoPicker.setValue(LocalDate.of(1971, 1, 1));
     controller.henteData();
     assertEquals(vektField.getText(), "");
     assertEquals(skrittField.getText(), "");
@@ -115,38 +107,31 @@ public class GUITest {
     assertEquals(karboField.getText(), "");
     assertEquals(fettField.getText(), "");
   }
-  
 
-  // Hva gjør egt denne testen i GUI? Den tester dagPersistance.
-  
   @Test
   void testLagreData() {
-    vektField.setText("");
     controller.lagreData();
-    helseapp.core.Dager dager = controller.dagPersistance.read(controller.savePath);
-    Dag dag = dager.getDag(dager.getDagCount() - 1);
-    assertEquals(dag.getDate(), datoPicker.getValue());
-    assertEquals(dag.getVekt(), 0.0);
-    assertEquals(dag.getSkritt(), 15000.0);
-    assertEquals(dag.getTreningstid(), 30.0);
-    assertEquals(dag.getProtein(), 150.0);
-    assertEquals(dag.getKarbo(), 400.0);
-    assertEquals(dag.getFett(), 100.0);
-    dager.removeDag(dager.getDagCount() - 1);
-    controller.dagPersistance.save(controller.savePath, dager);
+    controller.dateChangeAction();
+    controller.henteData();
+    assertEquals(LocalDate.of(1970, 1, 2), datoPicker.getValue());
+    assertEquals(vektField.getText(), "16.0");
+    assertEquals(skrittField.getText(), "15");
+    assertEquals(treningsField.getText(), "14.0");
+    assertEquals(proteinField.getText(), "13.0");
+    assertEquals(karboField.getText(), "12.0");
+    assertEquals(fettField.getText(), "11.0");
+    controller.dateChangeAction();
+    controller.lagreData();
   }
-
-  
-  
 
   @Test
   void testPopulateGraphs() {
-  controller.populateGraphs(6, LocalDate.of(2020, 12, 1));
+  controller.populateGraphs(6, LocalDate.of(1970,2,1));
   for (int i = 0; i < 5; i++) {
-    assertEquals(getxvalue(controller.vektChart, i), (i+1) + ".12");
-    assertEquals(getxvalue(controller.skrittChart, i), (i+1) + ".12");
-    assertEquals(getxvalue(controller.treningsChart, i), (i+1) + ".12");
-    assertEquals(getxvalue(controller.kaloriChart, i), (i+1) + ".12");
+    assertEquals(getxvalue(controller.vektChart, i), (i+1) + ".2");
+    assertEquals(getxvalue(controller.skrittChart, i), (i+1) + ".2");
+    assertEquals(getxvalue(controller.treningsChart, i), (i+1) + ".2");
+    assertEquals(getxvalue(controller.kaloriChart, i), (i+1) + ".2");
   }
   for (int i = 0; i < 5; i++) {
     assertEquals(getyvalue(controller.vektChart, i), 50.0 + i*10);
@@ -162,11 +147,11 @@ public class GUITest {
 
   @Test
   void testVisGraf() {
-    controller.fraDato.setValue(LocalDate.of(2020, 12, 1));
-    controller.tilDato.setValue(LocalDate.of(2020, 12, 6));
+    controller.fraDato.setValue(LocalDate.of(1970, 2, 1));
+    controller.tilDato.setValue(LocalDate.of(1970, 2, 6));
     controller.visGraf();
-    assertEquals(getxvalue(controller.vektChart, 0), "1.12");
-    assertEquals(getxvalue(controller.vektChart, 5), "6.12");
+    assertEquals(getxvalue(controller.vektChart, 0), "1.2");
+    assertEquals(getxvalue(controller.vektChart, 5), "6.2");
     assertEquals(controller.vektChart.getData().get(0).getData().size(), 6);
   }
 
@@ -189,6 +174,4 @@ public class GUITest {
   double getyvalue(javafx.scene.chart.LineChart<String, Number> chart, int day) {
     return chart.getData().get(0).getData().get(day).getYValue().doubleValue();
   }
-  */
-
 }

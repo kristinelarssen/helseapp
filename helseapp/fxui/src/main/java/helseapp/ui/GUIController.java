@@ -17,9 +17,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class GUIController implements Initializable {
-  // String savePath = "../core/src/main/java/helseapp/json/dager.json";
-  // Delete linja under om restAPI fungerer 
-  //DagPersistance dagPersistance = new DagPersistance();
   Persistance persistance = new Persistance();
 
   // Definerer alle FXML-elementene
@@ -95,10 +92,7 @@ public class GUIController implements Initializable {
         tallData[i] = 0.0;
       }
     }
-    
     persistance.addDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date));
-    // Delete linja under om restAPI fungerer 
-    // dagPersistance.saveDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date), savePath);
   }
 
   /**
@@ -116,8 +110,6 @@ public class GUIController implements Initializable {
   @FXML
   void henteData() {
     LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
-    // Delete linja under om restAPI fungerer
-    //Dager dager = dagPersistance.read(this.savePath);
     Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;
     for (int i = 0; i < dager.getDagCount(); i++) {
@@ -180,8 +172,6 @@ public class GUIController implements Initializable {
    */
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
-    // Delete linja under om restAPI fungerer 
-    // Dager dager = dagPersistance.read(this.savePath);
     Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;
     for (int i = 0; i < antallDager; i++) {

@@ -37,8 +37,8 @@ public class Controller {
         LocalDate d = LocalDate.parse(dato);
         Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
-        for (Dag dag : dagList){
-            if (dag.getDate().equals(d)){
+        for (Dag dag : dagList) {
+            if (dag.getDate().equals(d)) {
                 return new ResponseEntity<Dag>(dag, HttpStatus.OK);
             }
         }
@@ -46,11 +46,9 @@ public class Controller {
     }
 
     @PostMapping(value = "/dager", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Dag> addDag(@RequestBody Dag dag){
+    public ResponseEntity<Dag> addDag(@RequestBody Dag dag) {
         // Save object to file. New element for new date and update for existing date.
         dagPersistance.saveDag(dag, filePath);
         return new ResponseEntity<Dag>(dag, HttpStatus.OK);
     }
-
 }
-

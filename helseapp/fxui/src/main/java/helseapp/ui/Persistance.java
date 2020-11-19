@@ -105,7 +105,7 @@ public class Persistance{
         return null;
     }
 
-    public static  String createJsonDagString(Dag dag) {
+    public static String createJsonDagString(Dag dag) {
         try{
             JSONObject obj = new JSONObject();
             obj.put("vekt", dag.getVekt());
@@ -117,7 +117,6 @@ public class Persistance{
             obj.put("date", dag.getDate());
 
             String jsonDagString = obj.toString();
-            System.out.println(jsonDagString);
             return jsonDagString;
         }catch(JSONException e){
             return null;
@@ -140,8 +139,7 @@ public class Persistance{
                 os.write(input, 0, input.length);
             }
 
-            try(BufferedReader br = new BufferedReader(
-                    new InputStreamReader(con.getInputStream(), "utf-8"))) {
+            try(BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"))) {
                 StringBuilder response = new StringBuilder();
                 String responseLine = null;
                 while ((responseLine = br.readLine()) != null) {
@@ -149,16 +147,15 @@ public class Persistance{
                 }
                 System.out.println(response.toString());
             }
-
+            con.disconnect();
+            return true;
         }catch (MalformedURLException e){
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
-
-
 
     /*
     public static void main(String[] args) {
