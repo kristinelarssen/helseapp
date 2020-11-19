@@ -27,14 +27,14 @@ public class Controller {
     private DagPersistance dagPersistance = new DagPersistance();
 
     @GetMapping("/dager")
-    public ResponseEntity<List<Dag>> ResponseDager() {
+    public ResponseEntity<List<Dag>> responseDager() {
         Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();
         return new ResponseEntity<List<Dag>>(dagList, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/dager/{dato}", method = RequestMethod.GET)
-    public ResponseEntity<Dag> ResponseDag(@PathVariable("dato") String dato) {
+    public ResponseEntity<Dag> responseDag(@PathVariable("dato") String dato) {
         LocalDate d = LocalDate.parse(dato);
         Dager dager = dagPersistance.read(filePath);
         List<Dag> dagList = dager.getDager();

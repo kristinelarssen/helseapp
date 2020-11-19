@@ -159,10 +159,10 @@ modules.xml
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+iml,intellij
 
-/target
+*/target
 /.idea
 
-/.settings
+*/.settings
 /bin
 /.prosject
 /.classpath

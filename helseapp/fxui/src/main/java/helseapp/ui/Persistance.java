@@ -8,6 +8,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.*;
 import java.net.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import helseapp.core.Dag;
 import helseapp.core.Dager;
@@ -15,7 +17,7 @@ import helseapp.core.Dager;
 
 public class Persistance{
 
-    private static HttpURLConnection connection;
+    private HttpURLConnection connection;
 
 
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
@@ -73,13 +75,13 @@ public class Persistance{
             int status = connection.getResponseCode();
 
             if(status > 299){
-                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream()));
+                reader = new BufferedReader(new InputStreamReader(connection.getErrorStream(), StandardCharsets.UTF_8));
                 while((line = reader.readLine()) != null){
                     responseContent.append(line);
                 }
                 reader.close();
             }else {
-                reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), StandardCharsets.UTF_8));
                 while((line = reader.readLine()) != null){
                     responseContent.append(line);
                 }

@@ -17,7 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class GUIController implements Initializable {
-  String savePath = "../core/src/main/java/helseapp/json/dager.json";
+  // String savePath = "../core/src/main/java/helseapp/json/dager.json";
   // Delete linja under om restAPI fungerer 
   //DagPersistance dagPersistance = new DagPersistance();
   Persistance persistance = new Persistance();
