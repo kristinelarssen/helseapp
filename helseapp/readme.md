@@ -28,6 +28,23 @@ Brukeren kan velge mellom graf over vekt, skritt, treningstid og kalorier.
 
 <br/>
 
+#### 3.1 Fremside
+![picture](img/fremside.png)
+<br/>
+
+#### 3.2 Velg dato
+![picture](img/velg_dato.png)
+<br/>
+
+#### 3.3 Hente og lagre informasjon
+![picture](img/info.png)
+<br/>
+
+#### 3.4 Vis grafer
+![picture](img/graf.png)
+<br/>
+
+
 ## 4. Pakkediagram
 Oversikt over de ulike modulene og rammeverk vi benytter oss av. 
 ![picture](img/pakkediagram.png)
