@@ -1,6 +1,5 @@
 package helseapp.ui;
 
-/*
 import helseapp.core.Dag;
 import helseapp.json.DagPersistance;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +17,8 @@ import java.time.LocalDate;
 import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
-*/
 
-// legg til extends ApplicationTest
-public class GUITest {
-    /*
+public class GUITest /*extends ApplicationTest*/{
   private GUIController controller;
   private TextField vektField;
   private TextField skrittField;
@@ -32,7 +28,7 @@ public class GUITest {
   private TextField fettField;
   private DatePicker datoPicker;
   private TextField[] textFields = new TextField[6];
-
+/*
   @Override
   public void start(final Stage stage) throws Exception {
     final FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
@@ -42,7 +38,6 @@ public class GUITest {
     stage.show();
   }
 
-  
   @BeforeEach
   void setupItems() throws Exception {
     controller.savePath = "../core/src/test/java/helseapp/json/dager.json";
@@ -68,8 +63,6 @@ public class GUITest {
     karboField.setText("400");
     fettField.setText("100");
   }
-  
-  
 
   @Test
   void testController_initial() {
@@ -95,7 +88,7 @@ public class GUITest {
     assertEquals(karboField.getText(), "200.0");
     assertEquals(fettField.getText(), "100.0");
   }
-  
+
   @Test
   void testHenteData() {
     controller.datoPicker.setValue(LocalDate.of(2020, 12, 1));
@@ -115,10 +108,9 @@ public class GUITest {
     assertEquals(karboField.getText(), "");
     assertEquals(fettField.getText(), "");
   }
-  
 
   // Hva gjør egt denne testen i GUI? Den tester dagPersistance.
-  
+
   @Test
   void testLagreData() {
     vektField.setText("");
@@ -135,9 +127,6 @@ public class GUITest {
     dager.removeDag(dager.getDagCount() - 1);
     controller.dagPersistance.save(controller.savePath, dager);
   }
-
-  
-  
 
   @Test
   void testPopulateGraphs() {
@@ -188,7 +177,5 @@ public class GUITest {
 
   double getyvalue(javafx.scene.chart.LineChart<String, Number> chart, int day) {
     return chart.getData().get(0).getData().get(day).getYValue().doubleValue();
-  }
-  */
-
+  }*/
 }
