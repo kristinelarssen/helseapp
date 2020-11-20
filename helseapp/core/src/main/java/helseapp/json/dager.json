@@ -87,14 +87,6 @@
   "Fett" : 6.0,
   "Dato" : "2020-11-11"
 }, {
-  "Vekt" : 80.0,
-  "Skritt" : 8000.0,
-  "Treningstid" : 30.0,
-  "Protein" : 150.0,
-  "Karbohydrater" : 400.0,
-  "Fett" : 100.0,
-  "Dato" : "2020-11-19"
-}, {
   "Vekt" : 0.0,
   "Skritt" : 0.0,
   "Treningstid" : 0.0,
@@ -102,4 +94,12 @@
   "Karbohydrater" : 0.0,
   "Fett" : 0.0,
   "Dato" : "1970-01-02"
+}, {
+  "Vekt" : 80.0,
+  "Skritt" : 8000.0,
+  "Treningstid" : 30.0,
+  "Protein" : 150.0,
+  "Karbohydrater" : 400.0,
+  "Fett" : 100.0,
+  "Dato" : "2020-11-19"
 } ]

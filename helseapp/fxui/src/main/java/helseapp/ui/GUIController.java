@@ -131,7 +131,7 @@ public class GUIController implements Initializable {
   @FXML
   void henteData() {
     LocalDate date = datoPicker.getValue();
-    henteDag(date);
+    setDataFields(Hjelpemetoder.henteDag(date));
     if (date.isEqual(LocalDate.now())) {
       nextButton.setDisable(true);
       prevButton.setDisable(false);
@@ -163,9 +163,13 @@ public class GUIController implements Initializable {
    * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
    */
   void setDataFields(Dag dag) {
-    setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())),
-        Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()),
-        Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
+    if(dag == null) {
+      setDataFields("", "", "", "", "", "");
+    } else {
+      setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())),
+          Double.toString(dag.getTreningstid()), Double.toString(dag.getProtein()),
+          Double.toString(dag.getKarbo()), Double.toString(dag.getFett()));
+    }
   }
 
   /**
@@ -197,7 +201,7 @@ public class GUIController implements Initializable {
   void populateGraphs(int antallDager, LocalDate startDate) {
     double[][][] grafData = new double[4][antallDager][3];
     Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
-    Dag dag = null;
+    Dag dag;
     for (int i = 0; i < antallDager; i++) {
       dag = null;
       for (int j = 0; j < dager.getDagCount(); j++) {
@@ -220,28 +224,6 @@ public class GUIController implements Initializable {
   }
 
   /**
-   * Henter data lagret på spesifisert dato og legger disse inn i TextField-ene.
-   * Hvis ingen data er lagret på datoen blir TextField-ene satt til tomme
-   *
-   * @param date Dagen det skal hentes ut data fra
-   */
-  void henteDag(LocalDate date){
-    Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
-    Dag dag = null;
-    for (int i = 0; i < dager.getDagCount(); i++) {
-      if (dager.getDag(i).getDate().equals(date)) {
-        dag = dager.getDag(i);
-      }
-    }
-    if (dag != null) {
-      setDataFields(dag);
-    }
-    else {
-      setDataFields("", "", "", "", "", "");
-    }
-  }
-
-  /**
    * Bytter dato som blir vist til neste dag, kaller henteDag.
    * Setter nextbutton til disabled om vi er på nåværende dag
    * slik at man ikke kan bla seg inn i framtiden
@@ -251,7 +233,7 @@ public class GUIController implements Initializable {
     LocalDate date = datoPicker.getValue();
     LocalDate changeDate = date.plusDays(1);
     datoPicker.setValue(changeDate);
-    henteDag(changeDate);
+    setDataFields(Hjelpemetoder.henteDag(changeDate));
     if (changeDate.isEqual(LocalDate.now())){
         nextButton.setDisable(true);
     }
@@ -266,7 +248,7 @@ public class GUIController implements Initializable {
     LocalDate date = datoPicker.getValue();
     LocalDate changeDate = date.minusDays(1);
     datoPicker.setValue(changeDate);
-    henteDag(changeDate);
+    setDataFields(Hjelpemetoder.henteDag(changeDate));
     nextButton.setDisable(false);
   }
 
@@ -279,7 +261,7 @@ public class GUIController implements Initializable {
   void returnerTilDag() {
     LocalDate date = LocalDate.now();
     datoPicker.setValue(date);
-    henteDag(date);
+    setDataFields(Hjelpemetoder.henteDag(date));
     nextButton.setDisable(true);
     prevButton.setDisable(false);
   }
