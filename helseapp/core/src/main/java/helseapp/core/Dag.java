@@ -139,7 +139,7 @@ public class Dag {
       return false;
     }
     Dag dag = (Dag) o;
-    return this.getDate() == dag.getDate();
+    return this.getDate().equals(dag.getDate());
   }
 
   /**

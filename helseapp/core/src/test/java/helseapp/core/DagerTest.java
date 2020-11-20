@@ -1,6 +1,8 @@
 package helseapp.core;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import org.junit.jupiter.api.BeforeEach;
@@ -81,4 +83,24 @@ class DagerTest {
     assertEquals(dag1, dager.getDag(0));
   }
 
+  @Test
+  void testEquals() {
+    Dag dag1 = new Dag(1,2,3,4,5,6, LocalDate.of(1970, 1, 1));
+    Dag dag2 = new Dag(2,3,4,5,6,7, LocalDate.of(1970, 1, 1));
+    Dag dag3 = new Dag(1, 2, 3, 4, 5, 6, LocalDate.of(1970, 1, 2));
+    assertEquals(dag1, dag1);
+    assertEquals(dag1, dag2);
+    assertNotEquals(dag1, 1);
+    assertNotEquals(dag1, null);
+    assertNotEquals(dag1, dag3);
+  }
+
+  @Test
+  void testHashCode() {
+    Dag dag1 = new Dag(1, 2, 3, 4, 5, 6, LocalDate.of(1970, 1, 1));
+    Dag dag2 = new Dag(2, 3, 4, 5, 6, 7, LocalDate.of(1970, 1, 1));
+    assertEquals(dag1.hashCode(), dag2.hashCode());
+    Dag dag3 = new Dag(1, 2, 3, 4, 5, 6, LocalDate.of(1970, 1, 2));
+    assertNotEquals(dag1.hashCode(), dag3.hashCode());
+  }
 }
