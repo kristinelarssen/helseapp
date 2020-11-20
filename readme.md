@@ -3,25 +3,22 @@
 
 # Helseapp
 En app hvor man kan lagre og følge med på helsedata over tid.
-
 <br/>
 
 ## Hvordan kjøre appen:
-I terminal 1: mvn clean install (PS! denne skal kræsje)
-I terminal 1: mvn spring-boot:run -f rest/pom.xml
-I terminal 2: cd helseapp
-I terminal 2: mvn clean install
-I terminal 2: mvn javafx:run -f fxui/pom.xml
-
+1. Terminal 1: mvn clean install (PS! denne skal kræsje)
+2. Terminal 1: mvn spring-boot:run -f rest/pom.xml
+3. Åpne en ny terminal
+4. Terminal 2: cd helseapp
+5. Terminal 2: mvn javafx:run -f fxui/pom.xml
 <br/>
 
 ## Arkitektur
-Prosjektet består av 3 moduler, fxui, core og rest. Dette er gjort for å separere
+Prosjektet består av 3 moduler; fxui, core og rest. Dette er gjort for å separere
 front-end(fxui modulen) fra back-end(core modulen). De to lagene knyttes sammen
 gjennom et rest API(rest modulen). Dette er gjort slik at f.eks. hvis metode for
 lagring i back-end endres til databaselagring i server, så trenger ikke noe
 logikk i front-end å bli endret.
-
 <br/>
 
 ## Mappestruktur
