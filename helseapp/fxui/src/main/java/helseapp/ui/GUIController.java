@@ -100,7 +100,8 @@ public class GUIController implements Initializable {
         tallData[i] = 0.0;
       }
     }
-    persistance.addDag(new Dag(tallData[0], tallData[1], tallData[2], tallData[3], tallData[4], tallData[5], date));
+    persistance.addDag(new Dag(tallData[0], tallData[1],
+        tallData[2], tallData[3], tallData[4], tallData[5], date));
   }
 
   /**
@@ -112,12 +113,10 @@ public class GUIController implements Initializable {
     if (datoPicker.getValue().isEqual(LocalDate.now())) {
       nextButton.setDisable(true);
       prevButton.setDisable(false);
-    }
-    else if (datoPicker.getValue().isAfter(LocalDate.now())) {
+    } else if (datoPicker.getValue().isAfter(LocalDate.now())) {
       nextButton.setDisable(true);
       prevButton.setDisable(true);
-    }
-    else {
+    } else {
       nextButton.setDisable(false);
       prevButton.setDisable(false);
     }
@@ -135,12 +134,10 @@ public class GUIController implements Initializable {
     if (date.isEqual(LocalDate.now())) {
       nextButton.setDisable(true);
       prevButton.setDisable(false);
-    }
-    else if (date.isAfter(LocalDate.now())) {
+    } else if (date.isAfter(LocalDate.now())) {
       nextButton.setDisable(true);
       prevButton.setDisable(true);
-    }
-    else {
+    } else {
       nextButton.setDisable(false);
       prevButton.setDisable(false);
     }
@@ -163,7 +160,7 @@ public class GUIController implements Initializable {
    * @param dag Dag-objekt som inneholder dataene som skal vises i TextField-feltene
    */
   void setDataFields(Dag dag) {
-    if(dag == null) {
+    if (dag == null) {
       setDataFields("", "", "", "", "", "");
     } else {
       setDataFields(Double.toString(dag.getVekt()), Long.toString(Math.round(dag.getSkritt())),
@@ -234,8 +231,8 @@ public class GUIController implements Initializable {
     LocalDate changeDate = date.plusDays(1);
     datoPicker.setValue(changeDate);
     setDataFields(Hjelpemetoder.henteDag(changeDate));
-    if (changeDate.isEqual(LocalDate.now())){
-        nextButton.setDisable(true);
+    if (changeDate.isEqual(LocalDate.now())) {
+      nextButton.setDisable(true);
     }
   }
 

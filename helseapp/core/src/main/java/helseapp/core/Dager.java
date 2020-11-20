@@ -5,17 +5,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
 public class Dager implements Iterable<Dag> {
 
   // liste med dag objekter
+  private final List<Dag> dager = new ArrayList<>();
 
-  final List<Dag> dager = new ArrayList<>();
-
-  public Dager() {
-  }
-  /*
-  * public Dager(final double... DagerArray) { addDager(DagerArray); }
-  */
+  public Dager() {}
 
   /**
   * metode for å legge til dager.
@@ -43,6 +40,7 @@ public class Dager implements Iterable<Dag> {
   * @return dager - iterator for elementene i dager
   */
 
+  @NotNull
   @Override
   public Iterator<Dag> iterator() {
     return dager.iterator();
@@ -76,7 +74,7 @@ public class Dager implements Iterable<Dag> {
   * @param dag - dag som skal få satt et nummer til seg
   */
 
-  public void setDag(final int num, final Dag dag) {
+  void setDag(final int num, final Dag dag) {
     dager.set(num, dag);
   }
 
@@ -101,7 +99,7 @@ public class Dager implements Iterable<Dag> {
   * @return pos - posisjon til første av dagene som legges til
   */
 
-  public final int addDager(final Collection<Dag> dager) {
+  private int addDager(final Collection<Dag> dager) {
     final int pos = this.dager.size();
     this.dager.addAll(dager);
     return pos;
@@ -116,30 +114,28 @@ public class Dager implements Iterable<Dag> {
   *         første av dagene som legges til
   */
 
-  public final int addDager(final Dag... dager) {
+  private int addDager(final Dag... dager) {
     return addDager(List.of(dager));
   }
-
-  /*
-  * public final int addDager(final double... DagerArray) { final Collection<Dag>
-  * Dager = new ArrayList<>(DagerArray.length / 2); for (int i = 0; i <
-  * DagerArray.length; i += 2) { Dager.add(new Dag(DagerArray[i], DagerArray[i +
-  * 1])); } return addDager(Dager); }
-  */
 
   /**
   * Fjerner dag objekt i listen dager med indeks num.
   *
   * @param num - indeks for hvilken dag som skal bli fjernet
-  * @return dager - returnerer listen dager uten dag objektet som ble fjernet
+  * @return dager - returnerer listen med dager uten dag objektet som ble fjernet
   */
 
   public Dag removeDag(final int num) {
     return dager.remove(num);
   }
 
-  public List<Dag> getDager(){
-      return this.dager;
+  /**
+   * Returnerer alle dagene i Dager-objektet.
+   *
+   * @return dager - et List-object som inneholder alle dagene
+   */
+  public List<Dag> getDager() {
+    return this.dager;
   }
 
 }

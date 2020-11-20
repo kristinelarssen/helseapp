@@ -1,13 +1,12 @@
 package helseapp.ui;
 
+import helseapp.core.Dag;
+import helseapp.core.Dager;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParsePosition;
 import java.time.LocalDate;
 import java.util.Locale;
-
-import helseapp.core.Dag;
-import helseapp.core.Dager;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.TextField;
@@ -72,7 +71,7 @@ class Hjelpemetoder {
    *
    * @param date Dagen det skal hentes ut data fra
    */
-  static Dag henteDag(LocalDate date){
+  static Dag henteDag(LocalDate date) {
     Persistance persistance = new Persistance();
     Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
     Dag dag = null;

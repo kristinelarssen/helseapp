@@ -100,18 +100,18 @@ public class Dag {
     return skritt;
   }
 
-    /**
-     * Regner ut kaloriantallet fra fett, karbohydrater og proteinter.
-     * 9 = kal per fettgram, 4 = kal per gram protein og karbohydrater
-     *
-     * @return kalorier - antall kalorier basert på inntak
-     */
+  /**
+   * Regner ut kaloriantallet fra fett, karbohydrater og proteinter.
+   * 9 = kal per fettgram, 4 = kal per gram protein og karbohydrater
+   *
+   * @return kalorier - antall kalorier basert på inntak
+   */
 
-    public double getKalorier() {
-        return (9 * getFett() + 4 * (getKarbo() + getProtein()));
-    }
+  public double getKalorier() {
+    return (9 * getFett() + 4 * (getKarbo() + getProtein()));
+  }
 
-	/**
+  /**
    * Henter datoen.
    *
    * @return date - datoen for dagen
@@ -143,7 +143,8 @@ public class Dag {
   }
 
   /**
-   * Baserer hash-funksjonen på datoen til dagen, så den stemmer med equals-metoden
+   * Baserer hash-funksjonen på datoen til dagen, så den stemmer med equals-metoden.
+   *
    * @return Returnerer en hash
    */
   @Override
