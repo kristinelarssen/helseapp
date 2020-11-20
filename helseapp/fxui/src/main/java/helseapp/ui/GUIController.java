@@ -17,7 +17,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class GUIController implements Initializable {
-  Persistance persistance = new Persistance();
+  private Persistance persistance = new Persistance();
 
   // Definerer alle FXML-elementene
 
@@ -49,6 +49,15 @@ public class GUIController implements Initializable {
   Button visGraf;
 
   @FXML
+  Button prevButton;
+
+  @FXML
+  Button nextButton;
+
+  @FXML
+  Button returnButton;
+
+  @FXML
   DatePicker datoPicker;
 
   @FXML
@@ -76,7 +85,7 @@ public class GUIController implements Initializable {
    */
   @FXML
   void lagreData() {
-    final LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
+    final LocalDate date = datoPicker.getValue();
     Double[] tallData = new Double[6];
     String[] tekstData = new String[6];
     tekstData[0] = vektField.getText();
@@ -101,24 +110,40 @@ public class GUIController implements Initializable {
   @FXML
   void dateChangeAction() {
     setDataFields("", "", "", "", "", "");
+    if (datoPicker.getValue().isEqual(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(false);
+    }
+    else if (datoPicker.getValue().isAfter(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(true);
+    }
+    else {
+      nextButton.setDisable(false);
+      prevButton.setDisable(false);
+    }
   }
 
   /**
-   * Henter data lagret på spesifisert dato og legger disse inn i TextField-ene.
-   * Hvis ingen data er lagret på datoen forblir TextField-ene uendret
+   * Henter data lagret på spesifisert dato, kaller HenteDag.
+   * Setter knappene nextButton og prevButton aktiv eller inaktiv
+   * basert på om dagen er i fortid, nåtid eller framtid.
    */
   @FXML
   void henteData() {
-    LocalDate date = LocalDate.parse(datoPicker.getValue().toString());
-    Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
-    Dag dag = null;
-    for (int i = 0; i < dager.getDagCount(); i++) {
-      if (dager.getDag(i).getDate().equals(date)) {
-        dag = dager.getDag(i);
-      }
+    LocalDate date = datoPicker.getValue();
+    henteDag(date);
+    if (date.isEqual(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(false);
     }
-    if (dag != null) {
-      setDataFields(dag);
+    else if (date.isAfter(LocalDate.now())) {
+      nextButton.setDisable(true);
+      prevButton.setDisable(true);
+    }
+    else {
+      nextButton.setDisable(false);
+      prevButton.setDisable(false);
     }
   }
 
@@ -196,6 +221,71 @@ public class GUIController implements Initializable {
   }
 
   /**
+   * Henter data lagret på spesifisert dato og legger disse inn i TextField-ene.
+   * Hvis ingen data er lagret på datoen blir TextField-ene satt til tomme
+   *
+   * @param date Dagen det skal hentes ut data fra
+   */
+  void henteDag(LocalDate date){
+    Dager dager = (Dager) persistance.load("http://localhost:8080/dager");
+    Dag dag = null;
+    for (int i = 0; i < dager.getDagCount(); i++) {
+      if (dager.getDag(i).getDate().equals(date)) {
+        dag = dager.getDag(i);
+      }
+    }
+    if (dag != null) {
+      setDataFields(dag);
+    }
+    else {
+      setDataFields("", "", "", "", "", "");
+    }
+  }
+
+  /**
+   * Bytter dato som blir vist til neste dag, kaller henteDag.
+   * Setter nextbutton til disabled om vi er på nåværende dag
+   * slik at man ikke kan bla seg inn i framtiden
+   */
+  @FXML
+  void nesteDag() {
+    LocalDate date = datoPicker.getValue();
+    LocalDate changeDate = date.plusDays(1);
+    datoPicker.setValue(changeDate);
+    henteDag(changeDate);
+    if (changeDate.isEqual(LocalDate.now())){
+        nextButton.setDisable(true);
+    }
+  }
+
+  /**
+   * Bytter dato som blir vist til forrige dag, kaller henteDag.
+   * setter nextButton til aktiv slik at man kan bla seg fram igjen
+   */
+  @FXML
+  void forrigeDag() {
+    LocalDate date = datoPicker.getValue();
+    LocalDate changeDate = date.minusDays(1);
+    datoPicker.setValue(changeDate);
+    henteDag(changeDate);
+    nextButton.setDisable(false);
+  }
+
+  /**
+   * Bytter dato til dagen i dag, kaller henteDag.
+   * Setter nextButton og prevButton inaktiv og aktiv henholdsvis
+   * slik at man kan bla seg tilbake, men ikke inn i framtiden
+   */
+  @FXML
+  void returnerTilDag() {
+    LocalDate date = LocalDate.now();
+    datoPicker.setValue(date);
+    henteDag(date);
+    nextButton.setDisable(true);
+    prevButton.setDisable(false);
+  }
+
+  /**
    * Initialiserer appen.
    * Legger inn testdata i grafene
    * Viser grafene i appen
@@ -214,6 +304,7 @@ public class GUIController implements Initializable {
     Hjelpemetoder.makeNumberField(fettField);
     Platform.runLater(() -> {
       datoPicker.setValue(LocalDate.now());
+      nextButton.setDisable(true);
     });
   }
 }

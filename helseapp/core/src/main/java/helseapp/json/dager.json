@@ -79,13 +79,13 @@
   "Fett" : 0.0,
   "Dato" : "2020-11-18"
 }, {
-  "Vekt" : 1.0,
-  "Skritt" : 1.0,
-  "Treningstid" : 1.0,
-  "Protein" : 1.0,
-  "Karbohydrater" : 1.0,
-  "Fett" : 1.0,
-  "Dato" : "2020-11-19"
+  "Vekt" : 8.0,
+  "Skritt" : 2.0,
+  "Treningstid" : 3.0,
+  "Protein" : 4.0,
+  "Karbohydrater" : 5.0,
+  "Fett" : 6.0,
+  "Dato" : "2020-11-11"
 }, {
   "Vekt" : 0.0,
   "Skritt" : 0.0,
@@ -95,11 +95,11 @@
   "Fett" : 0.0,
   "Dato" : "1970-01-02"
 }, {
-  "Vekt" : 8.0,
-  "Skritt" : 2.0,
-  "Treningstid" : 3.0,
-  "Protein" : 4.0,
-  "Karbohydrater" : 5.0,
-  "Fett" : 6.0,
-  "Dato" : "2020-11-11"
+  "Vekt" : 90.0,
+  "Skritt" : 8000.0,
+  "Treningstid" : 30.0,
+  "Protein" : 150.0,
+  "Karbohydrater" : 400.0,
+  "Fett" : 100.0,
+  "Dato" : "2020-11-19"
 } ]

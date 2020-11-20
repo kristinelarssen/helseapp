@@ -21,12 +21,23 @@ class Persistance{
 
     private static ObjectMapper objectMapper = getDefaultObjectMapper();
 
+    /**
+     * Creating a default ObjectMapper-object.
+     * 
+     * @return new ObjectMapper() - ObjectMapper
+     */
     static ObjectMapper getDefaultObjectMapper(){
         return new ObjectMapper();
     }
 
 
-    static Dager parseJsonToDager(String responseBody) throws  JSONException {
+    /**
+     * Parse a the responsebody from the GET request to a Dager-object.
+     * 
+     * @param responseBody - String
+     * @return dager - Dager
+     */
+    public static Dager parseJsonToDager(String responseBody) throws  JSONException {
         JSONArray albums = new JSONArray(responseBody);
         Dager dager = new Dager();
         for(int i = 0; i<albums.length(); i++) {
@@ -44,7 +55,13 @@ class Persistance{
         return dager;
     }
 
-    static Dag parseJsonToDag(String responseBody) throws JsonProcessingException {
+    /**
+     * Parse a the responsebody from the GET request to a Dag-object.
+     * 
+     * @param responseBody - String
+     * @return dager - Dager
+     */
+    public static Dag parseJsonToDag(String responseBody) throws JsonProcessingException {
         JsonNode node = objectMapper.readTree(responseBody);
         LocalDate dato = LocalDate.parse(node.get("date").asText());
         double vekt = node.get("vekt").asDouble();
@@ -56,7 +73,13 @@ class Persistance{
         return new Dag(vekt, skritt, treningstid, protein, karbo, fett, dato);
     }
 
-    Object load(String urlString){
+    /**
+     * Performs a GET-request which either loads a Dager or a Dag object from file. This is decided by the URL input.
+     * 
+     * @param urlString - String
+     * @return Object 
+     */
+    public Object load(String urlString){
         BufferedReader reader;
         String line;
         StringBuilder responseContent = new StringBuilder();
@@ -98,7 +121,13 @@ class Persistance{
         return null;
     }
 
-    static String createJsonDagString(Dag dag) {
+    /**
+     * Use a Dag-object creates a json-formatted string.
+     * 
+     * @param dag - Dag
+     * @return String
+     */
+    public static String createJsonDagString(Dag dag) {
         try{
             JSONObject obj = new JSONObject();
             obj.put("vekt", dag.getVekt());
@@ -115,7 +144,12 @@ class Persistance{
         }
     }
 
-    void addDag(final Dag dag) {
+    /**
+     * Performs a POST-request, which saves the Dag-object.
+     * 
+     * @param dag - Dag
+     */
+    public void addDag(final Dag dag) {
         try {
             URL url = new URL ("http://localhost:8080/dager");
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
