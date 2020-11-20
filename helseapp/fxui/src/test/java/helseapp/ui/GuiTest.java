@@ -18,8 +18,8 @@ import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class GUITest extends ApplicationTest {
-  private GUIController controller;
+public class GuiTest extends ApplicationTest {
+  private GuiController controller;
   private TextField vektField;
   private TextField skrittField;
   private TextField treningField;
@@ -33,7 +33,7 @@ public class GUITest extends ApplicationTest {
 
   @Override
   public void start(final Stage stage) throws Exception {
-    final FXMLLoader loader = new FXMLLoader(getClass().getResource("GUI.fxml"));
+    final FXMLLoader loader = new FXMLLoader(getClass().getResource("Gui.fxml"));
     final Parent root = loader.load();
     this.controller = loader.getController();
     stage.setScene(new Scene(root));
@@ -42,7 +42,7 @@ public class GUITest extends ApplicationTest {
 
   @BeforeEach
   void setupItems() throws Exception {
-    ApplicationTest.launch(GUI.class);
+    ApplicationTest.launch(Gui.class);
     vektField = controller.vektField; // lookup("#vektField").query();
     skrittField = controller.skrittField; // lookup("#skrittField").query();
     treningField = controller.treningField; // = lookup("#treningField").query();
