@@ -15,7 +15,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class GUIController implements Initializable {
+public class GuiController implements Initializable {
   private Persistance persistance = new Persistance();
 
   // Definerer alle FXML-elementene

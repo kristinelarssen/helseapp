@@ -19,7 +19,7 @@
 <?import javafx.scene.chart.LineChart ?>
 <?import javafx.scene.chart.CategoryAxis ?>
 <?import javafx.scene.chart.NumberAxis ?>
-<Pane prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="helseapp.ui.GUIController">
+<Pane prefHeight="500" prefWidth="600" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="helseapp.ui.GuiController">
   <VBox prefHeight="500" prefWidth="600">
     <TabPane prefHeight="500" prefWidth="600" tabClosingPolicy="UNAVAILABLE">
       <Tab text="Registrer informasjon">

@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class GUI extends Application {
+public class Gui extends Application {
 
   /**
    * Åpner et vindu, og henter designet til appen fra FXML-dokumentet.
@@ -17,7 +17,7 @@ public class GUI extends Application {
    */
   @Override
   public void start(final Stage primaryStage) throws Exception {
-    final Parent inputParent = FXMLLoader.load(getClass().getResource("GUI.fxml"));
+    final Parent inputParent = FXMLLoader.load(getClass().getResource("Gui.fxml"));
     Scene inputScene = new Scene(inputParent);
     primaryStage.setTitle("Helseapp");
     primaryStage.setScene(inputScene);

@@ -119,7 +119,7 @@
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.4</version>
         <configuration>
-          <mainClass>helseapp.ui.GUI</mainClass>
+          <mainClass>helseapp.ui.Gui</mainClass>
         </configuration>
       </plugin>
 
